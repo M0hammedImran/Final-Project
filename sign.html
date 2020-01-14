@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/sign_style.css" />
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <title>LibSol</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <a href="./index.html">LibSol</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a class="anim" href="./index.html">Home</a></li>
+          <li><a class="anim" href="./contact.html">Contact us</a></li>
+          <li><a class="anim" href="./admin.html">Admin Login</a></li>
+          <li><a class="anim" href="./sign.html">Sign-Up</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="error-msg">
+      <span class="err" style="color: black;">Password Must match</span>
+    </div>
+    <div class="form-container">
+      <form action="http://127.0.0.1:3000/sign" id="myForm" method="POST">
+        <div class="main">
+          <div class="name-container">
+            <input
+              type="text"
+              class="input"
+              required
+              placeholder="First Name"
+              name="fname"
+              id="fname"
+              value="imran"
+            />
+            <input
+              type="text"
+              class="input"
+              placeholder="Last Name"
+              name="lname"
+              id="lname"
+            />
+          </div>
+          <div class="gender_date">
+            <div class="gen">
+              <input
+                type="radio"
+                required
+                name="gender"
+                value="male"
+                id="male"
+                checked
+              />
+              <label for="male">Male</label>
+              <input
+                type="radio"
+                required
+                name="gender"
+                value="female"
+                id="female"
+              />
+              <label for="female">Female</label>
+              <input
+                type="radio"
+                required
+                name="gender"
+                value="other"
+                id="other"
+              />
+              <label for="other">Other</label>
+            </div>
+            <div class="date-con">
+              <input
+                type="date"
+                required
+                class="input"
+                id="date"
+                name="bday"
+                value="2013-01-08"
+              />
+            </div>
+          </div>
+          <div class="address">
+            <input
+              type="text"
+              required
+              class="input"
+              name="address1"
+              id="address1"
+              placeholder="Address Line 1"
+              value="imran"
+            />
+            <input
+              type="text"
+              required
+              class="input"
+              name="address2"
+              id="address2"
+              placeholder="Address Line 2"
+              value="imran"
+            />
+          </div>
+          <div class="email">
+            <input
+              type="email"
+              name="email1"
+              required
+              class="input"
+              id="email1"
+              placeholder="Enter email"
+              value="m@i.c"
+            />
+            <input
+              type="email"
+              name="email2"
+              required
+              class="input"
+              id="email2"
+              placeholder="Re-Enter"
+              value="m@i.c"
+            />
+          </div>
+          <div class="pass">
+            <input
+              class="input"
+              type="password"
+              required
+              minlength="8"
+              placeholder="Enter Password"
+              name="password1"
+              id="password1"
+              value="12345678"
+            />
+            <input
+              class="input"
+              type="password"
+              required
+              minlenght="8"
+              placeholder="Re-enter Password"
+              name="password2"
+              id="password2"
+              value="12345678"
+            />
+          </div>
+          <div class="btn">
+            <button class="button" id="btn" type="submit">Submit</button>
+            <button class="button" id="btnR" type="reset">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="./script/app.js"></script>
+  </body>
+</html>

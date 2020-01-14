@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.form-container {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main {
+  width: 750px;
+  height: 85vh;
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: repeat(6, 1fr 2fr) 1fr;
+  border-radius: 0.8em;
+  .name-container {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+  }
+  .gender_date {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+  }
+  .address {
+    grid-column: 2 / span 1;
+    grid-row: 6 / span 1;
+  }
+  .email {
+    grid-column: 2 / span 1;
+    grid-row: 8 / span 1;
+  }
+  .pass {
+    grid-column: 2 / span 1;
+    grid-row: 10 / span 1;
+  }
+  .btn {
+    grid-column: 2 / span 1;
+    grid-row: 12 / span 1;
+  }
+}
+.error-msg {
+  width: 750px;
+  height: 50px;
+  background: rgb(172, 172, 172);
+  border-radius: 10px;
+  position: fixed;
+  top: 10vh;
+  right: 24.59em;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.gen {
+  width: 300px;
+  height: 45px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.btn,
+.pass,
+.email,
+.address,
+.gender_date,
+.name-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.input {
+  width: 20em;
+  height: 3em;
+  border: none;
+  border-bottom: 2px solid #08aeea;
+  border-radius: 0.1em;
+  padding: 0.5em;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  position: relative;
+}
+.input:focus {
+  border-bottom: 2px solid #2af598;
+  outline: none;
+}
+
+.button {
+  width: 8em;
+  height: 2em;
+}
