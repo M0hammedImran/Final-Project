@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
   grid-template-rows: repeat(6, 1fr 2fr) 1fr;
-  border-radius: 0.8em;
+  border-radius: 1em;
   .name-container {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;

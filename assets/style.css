@@ -173,3 +173,8 @@ nav ul {
   -webkit-transform-origin: left;
           transform-origin: left;
 }
+
+button a {
+  text-decoration: none;
+  color: white;
+}
