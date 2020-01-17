@@ -25,6 +25,10 @@ app.get("/admin", (req, res) => {
   res.render("admin.html");
 });
 
+app.post("/admin", (req, res) => {
+  res.send("Success!");
+});
+
 app.get("/sign", (req, res) => {
   res.render("sign.html");
 });
@@ -46,6 +50,10 @@ app.post("/sign", urlencodedParser, (req, res) => {
   let data = JSON.stringify(students, null, 2);
   fs.writeFile("./file.json", data, err => console.log(student.id));
   res.redirect("/");
+});
+
+app.get("/request", (req, res) => {
+  res.render("request.html");
 });
 
 const PORT = process.env.PORT || 3000;

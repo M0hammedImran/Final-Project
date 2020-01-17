@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/admin.css" />
     <link
       rel="shortcut icon"
       href="../assets/favicon.ico"
@@ -23,15 +24,40 @@
         </ul>
       </nav>
     </header>
-    <div class="admin-login">
-      <form action="/admin" method="post">
-        <div class="div">
-          <input type="text" placeholder="User Name" name="usid" id="" />
-          <input type="password" placeholder="Password" name="pass" id="" />
-        </div>
-        <div class="button">
-          <button type="submit">Submit</button>
-          <button onclick="window.location.href='/sign'">Cancel</button>
+
+    <div class="grid-layout">
+      <form action="/admin" method="POST">
+        <div class="main">
+          <div class="text">
+            <h3>Admin Login</h3>
+          </div>
+
+          <div class="admin">
+            <input
+              type="text"
+              class="input"
+              required
+              placeholder="User Name"
+              name="userID"
+              id="userID"
+            />
+          </div>
+
+          <div class="password">
+            <input
+              type="password"
+              class="input"
+              placeholder="Password"
+              required
+              name="password"
+              id="password"
+            />
+          </div>
+
+          <div class="btn">
+            <button type="submit">Submit</button>
+            <button onclick="window.location.href='/'">Cancel</button>
+          </div>
         </div>
       </form>
     </div>

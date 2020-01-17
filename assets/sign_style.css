@@ -31,54 +31,36 @@
 }
 
 .main .name-container {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / span 1;
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2 / span 1;
 }
 
 .main .gender_date {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / span 1;
   -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   grid-row: 4 / span 1;
 }
 
 .main .address {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / span 1;
   -ms-grid-row: 6;
   -ms-grid-row-span: 1;
   grid-row: 6 / span 1;
 }
 
 .main .email {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / span 1;
   -ms-grid-row: 8;
   -ms-grid-row-span: 1;
   grid-row: 8 / span 1;
 }
 
 .main .pass {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / span 1;
   -ms-grid-row: 10;
   -ms-grid-row-span: 1;
   grid-row: 10 / span 1;
 }
 
 .main .btn {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / span 1;
   -ms-grid-row: 12;
   -ms-grid-row-span: 1;
   grid-row: 12 / span 1;
@@ -126,6 +108,9 @@
 .gender_date,
 .name-container {
   width: 100%;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -142,7 +127,7 @@
   border: none;
   border-bottom: 2px solid #08aeea;
   border-radius: 0.1em;
-  padding: 0.5em;
+  padding: 0 1em;
   font-size: 15px;
   color: black;
   position: relative;
@@ -155,5 +140,11 @@
 
 .button {
   width: 8em;
-  height: 2em;
+  height: 2.5em;
+  text-align: center;
+  color: white;
+  background-color: #08aeea;
+  border: none;
+  outline: none;
+  border-radius: 0.3em;
 }
