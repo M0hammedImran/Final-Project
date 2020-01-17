@@ -23,6 +23,17 @@
         </ul>
       </nav>
     </header>
-    <div class=""><h1>Admin</h1></div>
+    <div class="admin-login">
+      <form action="/admin" method="post">
+        <div class="div">
+          <input type="text" placeholder="User Name" name="usid" id="" />
+          <input type="password" placeholder="Password" name="pass" id="" />
+        </div>
+        <div class="button">
+          <button type="submit">Submit</button>
+          <button onclick="window.location.href='/sign'">Cancel</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

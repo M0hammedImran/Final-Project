@@ -28,6 +28,7 @@ app.get("/admin", (req, res) => {
 app.get("/sign", (req, res) => {
   res.render("sign.html");
 });
+
 app.post("/sign", urlencodedParser, (req, res) => {
   const random = Math.floor(Math.random() * (10000000 - 1000000) + 1000000);
 
