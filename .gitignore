@@ -2,3 +2,4 @@
 /files
 .env
 files/users.json
+files/admin.json
