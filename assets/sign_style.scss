@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
 }
+
 .form-container {
   width: 100%;
   height: 90vh;
@@ -9,13 +10,14 @@
   justify-content: center;
   align-items: center;
 }
+
 .main {
   width: 750px;
   height: 85vh;
   background-color: rgb(255, 255, 255);
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
-  grid-template-rows: repeat(6, 1fr 2fr) 1fr;
+  grid-template-rows: repeat(5, 1fr 2fr) 1fr;
   border-radius: 1em;
   .name-container {
     grid-row: 2 / span 1;
@@ -32,29 +34,12 @@
     // grid-column: 2 / span 1;
     grid-row: 8 / span 1;
   }
-  .pass {
+  .btn {
     // grid-column: 2 / span 1;
     grid-row: 10 / span 1;
   }
-  .btn {
-    // grid-column: 2 / span 1;
-    grid-row: 12 / span 1;
-  }
 }
-.error-msg {
-  width: 750px;
-  height: 50px;
-  background: rgb(172, 172, 172);
-  border-radius: 10px;
-  position: fixed;
-  top: 10vh;
-  right: 24.59em;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: none;
-}
+
 .gen {
   width: 300px;
   height: 45px;
@@ -62,8 +47,8 @@
   justify-content: space-evenly;
   align-items: center;
 }
+
 .btn,
-.pass,
 .email,
 .address,
 .gender_date,
