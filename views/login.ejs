@@ -19,14 +19,14 @@
         <ul>
           <li><a class="anim" href="/">Home</a></li>
           <li><a class="anim" href="/contact">Contact us</a></li>
-          <li><a class="anim" href="/admin">Admin Login</a></li>
-          <li><a class="anim" href="/sign">Sign-Up</a></li>
+          <li><a class="anim" href="/adminLogin">Admin Login</a></li>
+          <li><a class="anim" href="/register">Sign-Up</a></li>
         </ul>
       </nav>
     </header>
-
+    <% if (messages.error) { %> <% messages.error %> <% } %>
     <div class="grid-layout">
-      <form action="/admin" method="POST">
+      <form action="/adminLogin" method="POST">
         <div class="main">
           <div class="text">
             <h3>Admin Login</h3>
@@ -61,5 +61,6 @@
         </div>
       </form>
     </div>
+    <script src="/script/app.js"></script>
   </body>
 </html>

@@ -20,14 +20,14 @@
         <ul>
           <li><a class="anim" href="/">Home</a></li>
           <li><a class="anim" href="/contact">Contact us</a></li>
-          <li><a class="anim" href="/admin">Admin Login</a></li>
-          <li><a class="anim" href="/sign">Sign-Up</a></li>
+          <li><a class="anim" href="/adminLogin">Admin Login</a></li>
+          <li><a class="anim" href="/register">Sign-Up</a></li>
         </ul>
       </nav>
     </header>
 
     <div class="form-container">
-      <form action="/sign" id="myForm" method="POST">
+      <form action="/register" id="myForm" method="POST">
         <div class="main">
           <div class="name-container">
             <input
@@ -35,7 +35,7 @@
               class="input"
               required
               placeholder="First Name"
-              name="fname"
+              name="firstName"
               id="fname"
               value="imran"
             />
@@ -43,7 +43,7 @@
               type="text"
               class="input"
               placeholder="Last Name"
-              name="lname"
+              name="lastName"
               id="lname"
             />
           </div>
@@ -81,7 +81,7 @@
                 required
                 class="input"
                 id="date"
-                name="bday"
+                name="DOB"
                 value="1999-12-12"
               />
             </div>
@@ -109,19 +109,19 @@
           <div class="email">
             <input
               type="email"
-              name="email1"
               required
               class="input"
               id="email1"
+              name="email1"
               placeholder="Enter email"
               value="m@i.c"
             />
             <input
               type="email"
-              name="email2"
               required
               class="input"
               id="email2"
+              name="email2"
               placeholder="Re-Enter"
               value="m@i.c"
             />
