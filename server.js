@@ -45,6 +45,7 @@ app.post("/sign", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, err => {
   console.log(`Server Running at port: ${PORT}`);
 });
