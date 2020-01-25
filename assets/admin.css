@@ -3,7 +3,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .grid-layout {
@@ -102,4 +102,8 @@ button {
   border: none;
   outline: none;
   border-radius: 0.3em;
+}
+
+.logout {
+  margin: 50px 50px 50px 50px;
 }
