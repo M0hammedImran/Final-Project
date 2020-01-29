@@ -4,7 +4,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -150,7 +150,7 @@ nav ul {
 }
 
 .anim::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -177,4 +177,76 @@ nav ul {
 button a {
   text-decoration: none;
   color: white;
+}
+
+button {
+  cursor: pointer;
+}
+
+.search-container {
+  width: 100%;
+  height: 92vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search-bar {
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search-btn-container {
+  width: 40rem;
+  height: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-cont {
+  width: 100%;
+  height: 20vh;
+  margin-top: -25rem;
+}
+
+.search {
+  width: 40rem;
+  height: 3rem;
+  padding: 0 0 0 1rem;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #08aeea;
+  border-radius: 0.2em;
+}
+
+.search-btn {
+  background-color: #10799f;
+}
+
+.imae {
+  width: 60em;
+  height: 20vh;
+  background-color: #eee;
 }

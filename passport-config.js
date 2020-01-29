@@ -1,9 +1,5 @@
-const fs = require('fs');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-
-const data = fs.readFileSync('./files/admin.json');
-const admin = JSON.parse(data);
 
 function initialize(passport, getUserByEmail, getUserById) {
   const authenticateUser = async (email, password, done) => {

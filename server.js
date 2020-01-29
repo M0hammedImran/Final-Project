@@ -8,7 +8,11 @@ const router = require('./routes/index.js');
 
 const app = express();
 
-let data = fs.readFileSync('./files/admin.json');
+let data = fs.readFileSync(
+  path.join(__dirname, './files') + '/admin.json',
+  'utf8'
+);
+
 let admin = JSON.parse(data);
 
 // Static Imports
@@ -74,8 +78,9 @@ app.get('/contact', router);
 app.get('/adminLogin', checkNotAuthenticated, router);
 app.get('/dashboard', checkAuthenticated, router);
 app.get('/register', checkNotAuthenticated, router);
-app.get('/user', require('./routes/users'));
+app.get('/user', router);
 app.get('/request', router);
+app.get('/request/search', router);
 // End GET
 
 // POST Requests
@@ -89,4 +94,4 @@ app.post('/logout', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, err => console.log(`Server Running at port: ${PORT}`));
+app.listen(PORT, () => console.log(`Server Running at port: ${PORT}`));
