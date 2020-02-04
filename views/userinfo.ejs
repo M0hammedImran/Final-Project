@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../assets/admin.css" />
     <link
       rel="shortcut icon"
-      href="../assets/favicon.ico"
+      href="../assets/images/favicon.ico"
       type="image/x-icon"
     />
     <title>LibSol</title>
@@ -24,9 +24,56 @@
         </ul>
       </nav>
     </header>
-
-    <h1>
-      <%- key %>
-    </h1>
+    <div class="main-uinfo">
+      <div class="cont">
+        <table>
+          <tr>
+            <th>ID</th>
+            <td>:</td>
+            <td><%= user.id %></td>
+          </tr>
+          <tr>
+            <th>First Name</th>
+            <td>:</td>
+            <td><%= user.firstName %></td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td>:</td>
+            <td><%= user.lastName %></td>
+          </tr>
+          <tr>
+            <th>Gender</th>
+            <td>:</td>
+            <td><%= user.gender %></td>
+          </tr>
+          <tr>
+            <th>Date of Birth</th>
+            <td>:</td>
+            <td><%= user.DOB %></td>
+          </tr>
+          <tr>
+            <th>Address Line 1</th>
+            <td>:</td>
+            <td><%= user.address1 %></td>
+          </tr>
+          <tr>
+            <th>Address Line 1</th>
+            <td>:</td>
+            <td><%= user.address2 %></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>:</td>
+            <td><%= user.email %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="btn-container-1">
+        <button onclick="window.location.href='/request'">
+          Request a Book
+        </button>
+      </div>
+    </div>
   </body>
 </html>

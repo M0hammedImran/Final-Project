@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../assets/sign_style.css" />
     <link
       rel="shortcut icon"
-      href="../assets/favicon.ico"
+      href="../assets/images/favicon.ico"
       type="image/x-icon"
     />
     <title>LibSol</title>
@@ -25,7 +25,8 @@
         </ul>
       </nav>
     </header>
-
+    <% if (messages.info) { %>
+    <span><% messages.info %></span> <% } %>
     <div class="form-container">
       <form action="/register" id="myForm" method="POST">
         <div class="main">
@@ -141,5 +142,11 @@
         </div>
       </form>
     </div>
+    <script>
+      const btn = document.getElementById('btn');
+      btn.addEventListener('click', () =>
+        setTimeout(() => (window.location = '/user'), 2000)
+      );
+    </script>
   </body>
 </html>

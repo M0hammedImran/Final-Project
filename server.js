@@ -5,7 +5,8 @@ const session = require('express-session');
 const flash = require('express-flash');
 const fs = require('fs');
 const router = require('./routes/index.js');
-
+// const mysqlConnection = require('./connection.js');
+// const bcrypt = require('bcryptjs');
 const app = express();
 
 let data = fs.readFileSync(
@@ -14,6 +15,7 @@ let data = fs.readFileSync(
 );
 
 let admin = JSON.parse(data);
+// console.log(admin);
 
 // Static Imports
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
@@ -46,6 +48,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// app.use(express.cookieParser('keyboard cat'));
 // Connect flash
 app.use(flash());
 // app.use(methodOverride("_method"));
@@ -79,8 +82,10 @@ app.get('/adminLogin', checkNotAuthenticated, router);
 app.get('/dashboard', checkAuthenticated, router);
 app.get('/register', checkNotAuthenticated, router);
 app.get('/user', router);
+app.get('/user/info', router);
 app.get('/request', router);
 app.get('/request/search', router);
+app.get('/**', router);
 // End GET
 
 // POST Requests
@@ -95,3 +100,15 @@ app.post('/logout', (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Server Running at port: ${PORT}`));
+
+// bcrypt.genSalt(10, function(err, salt) {
+//   bcrypt.hash('12345678', salt, (err, hash) => {
+//     if (err) throw err;
+//     let pass = { password: hash };
+//     admin.push(pass);
+//     let data = JSON.stringify(admin, null, 2);
+//     fs.writeFile('./files/admin.json', data, err => {
+//       if (err) throw err;
+//     });
+//   });
+// });
