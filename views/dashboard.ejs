@@ -24,10 +24,30 @@
         </ul>
       </nav>
     </header>
+    <div class="admin-container">
+      <div class="head"><h1><%- name %> Page</h1></div>
+      <div class="book-crud-container">
+        <p>CRUD Operations on Books</p>
+        <div class="a-c">
+          <a href="#">Add Books</a>
+          <a href="#">Edit Books</a>
+          <a href="#">View Books</a>
+          <a href="#">Remove Books</a>
+        </div>
+      </div>
+      <div class="user-crud-container">
+        <p>CRUD Operations on Users</p>
+        <div class="a-c">
+          <a href="#">Add User</a>
+          <a href="#">Edit User</a>
+          <a href="#">View Users</a>
+          <a href="#">Remove User</a>
+        </div>
+      </div>
 
-    <h1><%- name %></h1>
-    <form class="logout" action="/logout" method="post">
-      <button type="submit">logout</button>
-    </form>
+      <form class="logout" action="/logout" method="post">
+        <button type="submit">logout</button>
+      </form>
+    </div>
   </body>
 </html>

@@ -29,68 +29,41 @@ let users = JSON.parse(data);
 // let b2 = m2[0].toUpperCase();
 // let name2 = `${a2}${n2.substr(1)} ${b2}${m2.substr(1)}`;
 
-// JSON Object
-const books = [
-  {
-    bookName: "hitchhiker's guide to the galaxy",
-    bookID: 42,
-    imageFormat: 'webp'
-  },
-  {
-    bookName: 'IMRAN',
-    bookID: 123,
-    imageFormat: 'jpg'
-  },
-  {
-    bookName: 'LOCOMO',
-    bookID: 1234,
-    imageFormat: 'jpg'
-  },
-  {
-    bookName: 'QWERTY',
-    bookID: 1235,
-    imageFormat: 'jpg'
-  },
-  {
-    bookName: 'LOCOC',
-    bookID: 12345,
-    imageFormat: 'jpg'
-  },
-  {
-    bookName: 'SUFIYA',
-    bookID: 7464,
-    imageFormat: 'jpg'
-  }
-];
 let sqlAdmin = [];
-
-// Get Request
-router.get('/', (_req, res) => {
-  mysqlConnection.query('SELECT * FROM admin_table', (err, rows, fields) => {
+mysqlConnection.query(
+  'SELECT * FROM libsol_db.admin_table',
+  (err, rows, fields) => {
     if (!err) {
       adminData = rows;
       sqlAdmin.push(adminData);
     } else {
       console.log(err);
     }
-  });
-  res.render('index.ejs');
-});
+  }
+);
+// Get Request
+router.get('/', (_req, res) => res.render('index.ejs'));
 router.get('/adminLogin', (_req, res) => res.render('login'));
 router.get('/contact', (_req, res) => res.render('contact'));
 router.get('/dashboard', (_req, res) =>
   res.render('dashboard', { name: name1 })
 );
 router.get('/register', (req, res) => res.render('register'));
-router.get('/request', (req, res) => res.render('request'));
+router.get('/request', (req, res) => res.render('request', { message: '' }));
 router.get('/request/search', (req, res) => {
-  const val = req.query.search;
-  let book = findBook(val);
-  res.render('searchresult', {
-    value: book.bookName,
-    id: book.bookID,
-    format: book.imageFormat
-  });
+  const val = req.query.search.toUpperCase();
+  console.log(val);
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.books_table WHERE book_name='${val}'`,
+    (err, rows, fields) => {
+      console.log(rows);
+      if (err) {
+        res.render('request', { message: 'no such book is available' });
+      } else {
+        res.render('searchresult', { book: rows[0] });
+      }
+    }
+  );
 });
 
 router.get('/user', (req, res) => res.render('user'));
@@ -176,13 +149,6 @@ router.post('/adminLogin', (req, res, next) => {
 });
 
 module.exports = router;
-
-const findBook = val => {
-  const foundBook = books.find(
-    book => book.bookName.toUpperCase() === val.toUpperCase()
-  );
-  return foundBook;
-};
 
 // users.push(user);
 // let data = JSON.stringify(users, null, 2);

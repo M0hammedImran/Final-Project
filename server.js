@@ -3,20 +3,24 @@ const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
-const fs = require('fs');
+// const fs = require('fs');
 const router = require('./routes/index.js');
-// const mysqlConnection = require('./connection.js');
-// const bcrypt = require('bcryptjs');
+const mysqlConnection = require('./connection.js');
+
 const app = express();
-
-let data = fs.readFileSync(
-  path.join(__dirname, './files') + '/admin.json',
-  'utf8'
+let sqlAdmin = [];
+mysqlConnection.query(
+  'SELECT * FROM libsol_db.admin_table',
+  (err, rows, fields) => {
+    if (!err) {
+      adminData = rows[0];
+      sqlAdmin.push(adminData);
+      console.log(sqlAdmin);
+    } else {
+      console.log(err);
+    }
+  }
 );
-
-let admin = JSON.parse(data);
-// console.log(admin);
-
 // Static Imports
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
 app.use('/script', express.static(path.join(__dirname, '/script')));
@@ -25,8 +29,8 @@ app.use('/script', express.static(path.join(__dirname, '/script')));
 const initializePassport = require('./passport-config');
 initializePassport(
   passport,
-  email => admin.find(user => user.email === email),
-  id => admin.find(user => user.id === id)
+  email => sqlAdmin.find(user => user.email === email),
+  id => sqlAdmin.find(user => user.id === id)
 );
 
 // EJS
