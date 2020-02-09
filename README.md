@@ -1,2 +1,2 @@
 # LibraryManagement
- Library Management System with HTML5, SCSS, JavaScript and NodeJS
+ Library Management System with EJS, SCSS, JavaScript and NodeJS
