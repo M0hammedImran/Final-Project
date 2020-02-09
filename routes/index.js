@@ -1,33 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const fs = require('fs');
-const path = require('path');
-const mysqlConnection = require('../connection');
-const flash = require('express-flash');
 
-let dat = fs.readFileSync(
-  path.join(__dirname, '../files') + '/admin.json',
-  'utf8'
-);
-let data = fs.readFileSync(
-  path.join(__dirname, '../files') + '/users.json',
-  'utf8'
-);
+const mysqlConnection = require('../connection');
+
+// let dat = fs.readFileSync(
+//   path.join(__dirname, '../files') + '/admin.json',
+//   'utf8'
+// );
+// let data = fs.readFileSync(
+//   path.join(__dirname, '../files') + '/users.json',
+//   'utf8'
+// );
 
 let validId;
-//Formatted Text
-let admin = JSON.parse(dat);
-let n1 = admin[0].name;
-let a1 = n1.toUpperCase();
-let name1 = a1;
-
-let users = JSON.parse(data);
-// let n2 = users[0].firstName;
-// let m2 = users[0].lastName;
-// let a2 = n2[0].toUpperCase();
-// let b2 = m2[0].toUpperCase();
-// let name2 = `${a2}${n2.substr(1)} ${b2}${m2.substr(1)}`;
 
 let sqlAdmin = [];
 mysqlConnection.query(
@@ -70,13 +56,13 @@ router.get('/user', (req, res) => res.render('user'));
 
 router.get('/user/info', (req, res) => {
   mysqlConnection.query(
-    `SELECT * FROM libsol_db.user_table WHERE id=${validId}`,
+    `SELECT * FROM libsol_db.user_table WHERE user_id='${validId}'`,
     (err, rows, fields) => {
       if (!err) {
         rows = rows;
         // console.log(rows);
         currentUser = {
-          id: rows[0].id,
+          id: rows[0].user_id,
           firstName: rows[0].firstName,
           lastName: rows[0].lastName,
           gender: rows[0].gender,
@@ -99,7 +85,7 @@ router.get('/**', (req, res) => res.redirect('/'));
 // POST Requests
 router.post('/register', (req, res) => {
   let user = {
-    id: Date.now().toString(),
+    user_id: Date.now().toString(),
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     gender: req.body.gender,
@@ -108,7 +94,7 @@ router.post('/register', (req, res) => {
     address2: req.body.address2,
     email: req.body.email1
   };
-  validId = user.id;
+  validId = user.user_id;
   mysqlConnection.query(
     'SELECT * FROM libsol_db.user_table',
     (err, rows, fields) => {
@@ -117,12 +103,10 @@ router.post('/register', (req, res) => {
         let notval = adminData.find(
           invalidUser => invalidUser.email === user.email
         );
-        // console.log(notval);
         if (notval) res.redirect('/register');
         else if (notval == undefined) {
-          // console.log(JSON.stringify(notval));
           mysqlConnection.query(
-            'INSERT INTO user_table SET ?',
+            'INSERT INTO libsol_db.user_table SET ?',
             user,
             (err, rows, fields) => {
               if (!err) {

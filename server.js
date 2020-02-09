@@ -3,11 +3,11 @@ const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
-// const fs = require('fs');
 const router = require('./routes/index.js');
 const mysqlConnection = require('./connection.js');
 
 const app = express();
+
 let sqlAdmin = [];
 mysqlConnection.query(
   'SELECT * FROM libsol_db.admin_table',
@@ -15,12 +15,12 @@ mysqlConnection.query(
     if (!err) {
       adminData = rows[0];
       sqlAdmin.push(adminData);
-      console.log(sqlAdmin);
     } else {
       console.log(err);
     }
   }
 );
+
 // Static Imports
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
 app.use('/script', express.static(path.join(__dirname, '/script')));
@@ -52,10 +52,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(express.cookieParser('keyboard cat'));
 // Connect flash
 app.use(flash());
-// app.use(methodOverride("_method"));
 
 // Global Variables
 app.use((req, res, next) => {
