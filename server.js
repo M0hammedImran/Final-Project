@@ -8,6 +8,7 @@ const mysqlConnection = require('./connection.js');
 
 const app = express();
 
+// Loading AdminTable
 let sqlAdmin = [];
 mysqlConnection.query(
   'SELECT * FROM libsol_db.admin_table',
@@ -23,7 +24,6 @@ mysqlConnection.query(
 
 // Static Imports
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
-app.use('/script', express.static(path.join(__dirname, '/script')));
 
 // Passport Config
 const initializePassport = require('./passport-config');
@@ -82,6 +82,14 @@ app.get('/', router);
 app.get('/contact', router);
 app.get('/adminLogin', checkNotAuthenticated, router);
 app.get('/dashboard', checkAuthenticated, router);
+app.get('/dashboard/adduser', checkAuthenticated, router);
+app.get('/dashboard/removeuser', checkAuthenticated, router);
+app.get('/dashboard/updateuser', checkAuthenticated, router);
+app.get('/dashboard/viewuser', checkAuthenticated, router);
+app.get('/dashboard/addbook', checkAuthenticated, router);
+app.get('/dashboard/removebook', checkAuthenticated, router);
+app.get('/dashboard/viewbook', checkAuthenticated, router);
+app.get('/dashboard/updatebook', checkAuthenticated, router);
 app.get('/register', checkNotAuthenticated, router);
 app.get('/user', router);
 app.get('/user/info', router);

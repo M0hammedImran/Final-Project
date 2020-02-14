@@ -5,7 +5,7 @@
 
 .form-container {
   width: 100%;
-  height: 90vh;
+  height: 92vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,6 +71,7 @@
   color: rgb(0, 0, 0);
   position: relative;
 }
+
 .input:focus {
   border-bottom: 2px solid #2af598;
   outline: none;
@@ -85,4 +86,20 @@
   border: none;
   outline: none;
   border-radius: 0.3em;
+}
+
+.note {
+  text-align: center;
+}
+
+/* Chrome, Edge, Safari*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }

@@ -27,15 +27,17 @@
     </header>
     <% if (messages.info) { %>
     <span><% messages.info %></span> <% } %>
+
     <div class="form-container">
       <form action="/register" id="myForm" method="POST">
+        <h3 class="note">Note: ( * ) Indicates Compulsary Fields</h3>
         <div class="main">
           <div class="name-container">
             <input
               type="text"
               class="input"
               required
-              placeholder="First Name"
+              placeholder="First Name *"
               name="firstName"
               id="fname"
             />
@@ -86,7 +88,7 @@
               class="input"
               name="address1"
               id="address1"
-              placeholder="Address Line 1"
+              placeholder="Address Line 1 *"
             />
             <input
               type="text"
@@ -94,7 +96,7 @@
               class="input"
               name="address2"
               id="address2"
-              placeholder="Address Line 2"
+              placeholder="Address Line 2 *"
             />
           </div>
           <div class="email">
@@ -102,17 +104,19 @@
               type="email"
               required
               class="input"
-              id="email1"
-              name="email1"
-              placeholder="Enter email"
+              id="email"
+              name="email"
+              placeholder="Enter email *"
             />
+
             <input
-              type="email"
+              type="tel"
               required
               class="input"
-              id="email2"
-              name="email2"
-              placeholder="Re-Enter"
+              id="phone"
+              pattern="[7-9]{1}\d{9}"
+              name="phone"
+              placeholder="Phone No. *"
             />
           </div>
           <div class="pass"></div>
@@ -129,11 +133,5 @@
         </div>
       </form>
     </div>
-    <script>
-      const btn = document.getElementById('btn');
-      btn.addEventListener('click', () =>
-        setTimeout(() => (window.location = '/user'), 2000)
-      );
-    </script>
   </body>
 </html>

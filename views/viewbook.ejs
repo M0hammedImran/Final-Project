@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="../assets/style.css" />
     <link rel="stylesheet" href="../assets/admin.css" />
+    <link rel="stylesheet" href="../assets/book.css" />
     <link
       rel="shortcut icon"
       href="../assets/images/favicon.ico"
@@ -24,19 +25,21 @@
         </ul>
       </nav>
     </header>
-    <div class="main-user-cont">
-      <div class="cong"><h1>Congratulation</h1></div>
-      <div class="cong-text">
-        <h3>
-          You have successfully Signed Up. <br />
-          <a aria-placeholder="User Info" href="/user/info">Click here</a> to
-          see your details and to get your Hash Key.
-        </h3>
-      </div>
-      <div class="message">
-        <% let message; %> <% if (message!= undefined) { %> <%= message %> <% }
-        %>
-      </div>
+    <div class="main-book-view" style="margin: 2em;">
+      <ol style="list-style-type:decimal-leading-zero">
+        <% books.forEach(book => {%>
+        <li>
+          <h3><%=book.book_name%></h3>
+          <br />
+          <strong> Author: </strong><%=book.author%> <br />
+          <strong> Country: </strong><%=book.origin_country%> <br />
+          <strong> No.of Copies: </strong> <%=book.copies%>
+        </li>
+        <br />
+        <hr />
+        <br />
+        <%});%>
+      </ol>
     </div>
   </body>
 </html>
