@@ -35,7 +35,16 @@ router.get('/dashboard/updateuser', (req, res) => {
   res.render('upuser');
 });
 router.get('/dashboard/viewuser', (req, res) => {
-  res.render('viewuser');
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.user_table`,
+    (err, rows, fields) => {
+      let users;
+      if (!err) users = rows;
+      else console.log(err);
+
+      res.render('viewuser', { users: users });
+    }
+  );
 });
 router.get('/dashboard/addbook', (req, res) => {
   res.render('addbook');
@@ -65,15 +74,42 @@ router.get('/register', (req, res) => res.render('register'));
 router.get('/request', (req, res) => res.render('request', { message: '' }));
 router.get('/request/search', (req, res) => {
   const val = req.query.search.toUpperCase();
-  console.log(val);
+  console.log(`01.${val}`);
   mysqlConnection.query(
     `SELECT * FROM libsol_db.books_table WHERE book_name='${val}'`,
     (err, rows, fields) => {
-      console.log(rows);
-      if (err) {
-        res.render('request', { message: 'no such book is available' });
+      // console.log(typeof rows.toString());
+      let book, message;
+      if (!err) {
+        if (rows.toString().length === 0) {
+          book = [
+            {
+              book_id: '',
+              book_name: '',
+              author: '',
+              publisher: '',
+              published_year: '',
+              origin_country: '',
+              pages: '',
+              copies: ''
+            }
+          ];
+          message = 'No Such Book is Available';
+          console.log(book, message);
+          console.log(`less than 1`);
+        } else {
+          book = rows[0];
+          message = '';
+        }
+        console.log(book, message);
+        res.render('searchresult', {
+          book: book,
+          message: message
+        });
+        // console.log(err);
       } else {
-        res.render('searchresult', { book: rows[0] });
+        console.log(err);
+        res.render('request', { message: 'no such book is available' });
       }
     }
   );
@@ -168,6 +204,16 @@ router.post('/adminLogin', (req, res, next) => {
   })(req, res, next);
 });
 
+router.post('/request/book', (req, res) => {
+  // console.log(req.body.id);
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.books_table WHERE book_id=5`,
+    (err, rows, fields) => {
+      console.log(err, rows);
+    }
+  );
+  res.redirect('/request');
+});
 const keyGen = () => (Math.random() + '').substring(2, 10);
 
 module.exports = router;

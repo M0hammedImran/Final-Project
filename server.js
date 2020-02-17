@@ -105,6 +105,7 @@ app.post('/logout', (req, res) => {
   req.logOut();
   res.redirect('/adminLogin');
 });
+app.post('/request/book', router);
 // End POST
 
 const PORT = process.env.PORT || 3000;

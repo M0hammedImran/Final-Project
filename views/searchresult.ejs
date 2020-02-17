@@ -25,29 +25,59 @@
       </nav>
     </header>
     <div class="main-cont">
-      <div class="info">
-        <h2>Name</h2>
-        <h3><%= book.book_name%></h3>
-        <br />
-        <h2>Author</h2>
-        <h3><%= book.author%></h3>
-        <br />
-        <h2>Publisher</h2>
-        <h3><%= book.publisher%></h3>
-        <br />
-        <h2>Published Year</h2>
-        <h3><%= book.published_year%></h3>
-        <br />
-        <h2>Country</h2>
-        <h3><%= book.origin_country%></h3>
-        <br />
-        <h2>No. of Pages</h2>
-        <h3><%= book.pages%></h3>
-        <br />
+      <% if (message.length==0) { %>
+      <div class="contt">
+        <div class="info">
+          <h2>Name</h2>
+          <h3><%= book.book_name%></h3>
+          <br />
+          <h2>Author</h2>
+          <h3><%= book.author%></h3>
+          <br />
+          <h2>Publisher</h2>
+          <h3><%= book.publisher%></h3>
+          <br />
+          <h2>Published Year</h2>
+          <h3><%= book.published_year%></h3>
+          <br />
+          <h2>Country</h2>
+          <h3><%= book.origin_country%></h3>
+          <br />
+          <h2>No. of Pages</h2>
+          <h3><%= book.pages%></h3>
+          <br />
+        </div>
+        <div class="image-cont">
+          <img src="/assets/images/books/<%=book.book_id%>.jpg" alt="" />
+        </div>
       </div>
-      <div class="image-cont">
-        <img src="/assets/images/books/<%=book.book_id%>.jpg" alt="" />
+      <div class="rq-btn">
+        <form action="/request/book" method="POST">
+          <input
+            type="text"
+            name="id"
+            id="id"
+            value="<%=book.book_id%>"
+            style="display: none;"
+          />
+          <button type="submit">Request</button>
+        </form>
       </div>
+      <% } else { %>
+      <div class="message">
+        <div class="action">
+          <h1><%= message %></h1>
+          <div class="rq-btn">
+            <form action="/request" method="GET">
+              <button type="submit">Go Back</button>
+            </form>
+          </div>
+        </div>
+        <div class="err-mes-img">
+          <img src="/assets/images/books/error.jpg" alt="Error" />
+        </div>
+      </div>
+      <% } %>
     </div>
   </body>
 </html>
