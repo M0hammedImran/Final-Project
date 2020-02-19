@@ -94,6 +94,7 @@ app.get('/register', checkNotAuthenticated, router);
 app.get('/user', router);
 app.get('/user/info', router);
 app.get('/request', router);
+app.get('/request/invoice', router);
 app.get('/request/search', router);
 app.get('/**', router);
 // End GET

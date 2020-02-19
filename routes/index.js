@@ -41,7 +41,6 @@ router.get('/dashboard/viewuser', (req, res) => {
       let users;
       if (!err) users = rows;
       else console.log(err);
-
       res.render('viewuser', { users: users });
     }
   );
@@ -95,8 +94,6 @@ router.get('/request/search', (req, res) => {
             }
           ];
           message = 'No Such Book is Available';
-          console.log(book, message);
-          console.log(`less than 1`);
         } else {
           book = rows[0];
           message = '';
@@ -150,7 +147,9 @@ router.get('/user/info', (req, res) => {
     }
   );
 });
-
+router.get('/request/invoice', (req, res) => {
+  res.render('invoice');
+});
 router.get('/**', (req, res) => res.redirect('/'));
 
 // POST Requests
@@ -207,13 +206,14 @@ router.post('/adminLogin', (req, res, next) => {
 router.post('/request/book', (req, res) => {
   // console.log(req.body.id);
   mysqlConnection.query(
-    `SELECT * FROM libsol_db.books_table WHERE book_id=5`,
+    `SELECT * FROM libsol_db.books_table WHERE book_id=${req.body.id}`,
     (err, rows, fields) => {
       console.log(err, rows);
     }
   );
-  res.redirect('/request');
+  res.redirect('/request/invoice', { rows: rows[0] });
 });
+
 const keyGen = () => (Math.random() + '').substring(2, 10);
 
 module.exports = router;
