@@ -4,6 +4,8 @@ const passport = require('passport');
 const mysqlConnection = require('../connection');
 
 let validId;
+var row = [];
+console.log(row);
 
 let sqlAdmin = [];
 mysqlConnection.query(
@@ -147,9 +149,9 @@ router.get('/user/info', (req, res) => {
     }
   );
 });
-router.get('/request/invoice', (req, res) => {
-  res.render('invoice');
-});
+router.get('/request/invoice', (req, res) =>
+  res.render('invoice', { rows: row[0] })
+);
 router.get('/**', (req, res) => res.redirect('/'));
 
 // POST Requests
@@ -202,16 +204,18 @@ router.post('/adminLogin', (req, res, next) => {
     failureMessage: 'error'
   })(req, res, next);
 });
-
 router.post('/request/book', (req, res) => {
   // console.log(req.body.id);
+
   mysqlConnection.query(
     `SELECT * FROM libsol_db.books_table WHERE book_id=${req.body.id}`,
     (err, rows, fields) => {
       console.log(err, rows);
+      row.length = 0;
+      row.push(rows[0]);
     }
   );
-  res.redirect('/request/invoice', { rows: rows[0] });
+  res.redirect('/request/invoice');
 });
 
 const keyGen = () => (Math.random() + '').substring(2, 10);

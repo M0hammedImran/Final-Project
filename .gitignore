@@ -5,4 +5,4 @@ files/users.json
 files/admin.json
 assets/images/books
 sendgrid.env
-
+*.swp
