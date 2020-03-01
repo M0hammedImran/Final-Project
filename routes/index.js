@@ -5,7 +5,8 @@ const mysqlConnection = require('../connection');
 
 let validId;
 var row = [];
-console.log(row);
+var userinfo = [];
+// console.log(row);
 
 let sqlAdmin = [];
 mysqlConnection.query(
@@ -75,7 +76,7 @@ router.get('/register', (req, res) => res.render('register'));
 router.get('/request', (req, res) => res.render('request', { message: '' }));
 router.get('/request/search', (req, res) => {
   const val = req.query.search.toUpperCase();
-  console.log(`01.${val}`);
+  // console.log(`01.${val}`);
   mysqlConnection.query(
     `SELECT * FROM libsol_db.books_table WHERE book_name='${val}'`,
     (err, rows, fields) => {
@@ -100,7 +101,7 @@ router.get('/request/search', (req, res) => {
           book = rows[0];
           message = '';
         }
-        console.log(book, message);
+        console.log(book);
         res.render('searchresult', {
           book: book,
           message: message
@@ -113,9 +114,15 @@ router.get('/request/search', (req, res) => {
     }
   );
 });
+router.get('/request/invoice', (req, res) => {
+  res.render('invoice', { book: row[0] });
+});
+
+router.get('/request/auth', (req, res) =>
+  res.render('confirm', { book: row[0] })
+);
 
 router.get('/user', (req, res) => res.render('user'));
-
 router.get('/user/info', (req, res) => {
   mysqlConnection.query(
     `SELECT * FROM libsol_db.user_table WHERE user_id='${validId}'`,
@@ -149,9 +156,6 @@ router.get('/user/info', (req, res) => {
     }
   );
 });
-router.get('/request/invoice', (req, res) =>
-  res.render('invoice', { rows: row[0] })
-);
 router.get('/**', (req, res) => res.redirect('/'));
 
 // POST Requests
@@ -204,18 +208,35 @@ router.post('/adminLogin', (req, res, next) => {
     failureMessage: 'error'
   })(req, res, next);
 });
+
 router.post('/request/book', (req, res) => {
   // console.log(req.body.id);
-
   mysqlConnection.query(
     `SELECT * FROM libsol_db.books_table WHERE book_id=${req.body.id}`,
     (err, rows, fields) => {
-      console.log(err, rows);
+      // console.log(err, rows);
       row.length = 0;
       row.push(rows[0]);
     }
   );
-  res.redirect('/request/invoice');
+  res.redirect('/request/auth');
+});
+
+router.post('/request/auth', (req, res) => {
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.user_table WHERE user_id=${req.body.user_id}`,
+    (err, rows, fields) => {
+      if (!err && rows.toString().length !== 0) {
+        userinfo = [];
+        userinfo.push(rows[0]);
+        console.log(userinfo);
+        res.redirect('/request/invoice');
+      } else {
+        console.log(err);
+        res.redirect('/request');
+      }
+    }
+  );
 });
 
 const keyGen = () => (Math.random() + '').substring(2, 10);

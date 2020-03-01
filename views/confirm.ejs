@@ -24,6 +24,12 @@
       </nav>
     </header>
     <div class="main-cont">
+      <form action="/request/auth" method="POST">
+        <input type="text" placeholder="Hash Key" name="user_id" id="user_id" />
+        <input type="text" placeholder="Phone No." name="ph_no" id="ph_no" />
+        <div class="rq-btn"><button type="submit">Submit</button></div>
+      </form>
+
       <div class="contt">
         <div class="info">
           <h2>Name</h2>
@@ -46,16 +52,8 @@
           <br />
         </div>
         <div class="image-cont">
-          <img
-            src="/assets/images/books/<%=book.book_id%>.jpg"
-            alt="Book Cover"
-          />
+          <img src="/assets/images/books/<%=book.book_id%>.jpg" alt="" />
         </div>
-      </div>
-      <div class="rq-btn">
-        <form action="#" method="POST">
-          <button type="submit">Confirm</button>
-        </form>
       </div>
     </div>
   </body>

@@ -102,6 +102,7 @@ app.get('/**', router);
 // POST Requests
 app.post('/adminLogin', router);
 app.post('/register', router);
+app.post('/request/auth', router);
 app.post('/logout', (req, res) => {
   req.logOut();
   res.redirect('/adminLogin');

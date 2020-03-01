@@ -251,8 +251,18 @@ button {
 .instructions {
   width: 60rem;
   height: 30vh;
-  font-size: 20px;
+  font-size: 16px;
   padding: 1rem;
+}
+
+.instructions p {
+  color: #232323;
+}
+
+.instructions .pp {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
 }
 
 .message {
@@ -317,7 +327,7 @@ button {
           flex-direction: column;
 }
 
-.contt {
+.main-cont .contt {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -328,6 +338,10 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.main-cont .contt h3 {
+  font-weight: normal;
 }
 
 .rq-btn {
