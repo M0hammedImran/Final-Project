@@ -6,7 +6,26 @@ const mysqlConnection = require('../connection');
 let validId;
 var row = [];
 var userinfo = [];
-// console.log(row);
+
+const event = new Date();
+let dateArray = event
+  .toLocaleString('en-GB')
+  .toString()
+  .split(',');
+let dateArray2 = (dateArray[0] + '').split('/');
+var today = `${dateArray2[0]}.${dateArray2[1]}.${+dateArray2[2]}`;
+
+const event2 = new Date();
+event2.setDate(event.getDate() + 30);
+let dateArray3 = event2
+  .toLocaleString('en-GB')
+  .toString()
+  .split(',');
+let dateArray4 = (dateArray3[0] + '').split('/');
+var tomorrow = `${dateArray4[0]}.${dateArray4[1]}.${+dateArray4[2]}`;
+
+console.log(`Borrowing Date: ${today}`);
+console.log(`Borrowing Date: ${tomorrow}`);
 
 let sqlAdmin = [];
 mysqlConnection.query(
@@ -115,12 +134,26 @@ router.get('/request/search', (req, res) => {
   );
 });
 router.get('/request/invoice', (req, res) => {
-  res.render('invoice', { book: row[0] });
+  res.render('invoice', {
+    book: row[0],
+    user: userinfo[0],
+    boDate: today,
+    reDate: tomorrow
+  });
 });
 
 router.get('/request/auth', (req, res) =>
   res.render('confirm', { book: row[0] })
 );
+router.get('/request/error', (req, res) => {
+  res.render('error');
+});
+router.get('/request/someerror', (req, res) => {
+  res.render('someerror');
+});
+router.get('/request/success', (req, res) => {
+  res.render('success');
+});
 
 router.get('/user', (req, res) => res.render('user'));
 router.get('/user/info', (req, res) => {
@@ -239,6 +272,61 @@ router.post('/request/auth', (req, res) => {
   );
 });
 
+router.post('/request/last', (req, res) => {
+  trans_msg = `${userinfo[0].firstName} ${userinfo[0].lastName} 
+  borrowed ${row[0].book_name} on ${today} and have to return it by ${tomorrow}`;
+
+  let trans = {
+    transaction_id: keyGenSmall(),
+    user_id: req.body.user_id,
+    book_id: req.body.book_id,
+    borrow_date: req.body.boDate,
+    due_date: req.body.reDate,
+    transaction_message: trans_msg
+  };
+  mysqlConnection.query(
+    'SELECT * FROM libsol_db.transaction_table',
+    (err, rows, fields) => {
+      if (!err) {
+        transData = rows;
+        let notval = transData.find(
+          invalidUser => invalidUser.user_id === trans.user_id
+        );
+        if (notval) res.redirect('/request/error');
+        else if (notval == undefined) {
+          mysqlConnection.query(
+            'INSERT INTO libsol_db.transaction_table SET ?',
+            trans,
+            (err, rows, fields) => {
+              if (!err) {
+                console.log('Success!');
+                mysqlConnection.query(
+                  `UPDATE libsol_db.books_table SET copies=${row[0].copies -
+                    1} WHERE book_id=${row[0].book_id}`,
+                  (err, rows, fields) => {
+                    if (!err) {
+                      // console.log(`${rows.toSrting()} : ${fields}`);
+                      res.redirect('/request/success');
+                    } else {
+                      console.log(err);
+                      res.redirect('/request/someerror');
+                    }
+                  }
+                );
+              } else {
+                console.log(err);
+                res.redirect('/register/someerror');
+              }
+            }
+          );
+        }
+      } else console.log(err);
+    }
+  );
+  // res.send(trans);
+});
+
 const keyGen = () => (Math.random() + '').substring(2, 10);
+const keyGenSmall = () => (Math.random() + '').substring(2, 6);
 
 module.exports = router;

@@ -7,6 +7,10 @@
       href="../assets/images/favicon.ico"
       type="image/x-icon"
     />
+    <script
+      src="https://kit.fontawesome.com/31957ff6ff.js"
+      crossorigin="anonymous"
+    ></script>
     <title>LibSol</title>
   </head>
   <body>
@@ -16,6 +20,9 @@
       </div>
       <nav>
         <ul>
+          <li>
+            <a class="anim" href="/request"><i class="fas fa-search"></i></a>
+          </li>
           <li><a class="anim" href="/">Home</a></li>
           <li><a class="anim" href="/contact">Contact us</a></li>
           <li><a class="anim" href="/adminLogin">Admin Login</a></li>
@@ -25,9 +32,23 @@
     </header>
     <div class="main-cont">
       <form action="/request/auth" method="POST">
-        <input type="text" placeholder="Hash Key" name="user_id" id="user_id" />
-        <input type="text" placeholder="Phone No." name="ph_no" id="ph_no" />
-        <div class="rq-btn"><button type="submit">Submit</button></div>
+        <input
+          type="text"
+          placeholder="Hash Key"
+          required
+          value="1234"
+          name="user_id"
+          id="user_id"
+        />
+        <input
+          type="text"
+          placeholder="Phone No."
+          name="ph_no"
+          required
+          value="9110412712"
+          id="ph_no"
+        />
+        <div class="sub-btn"><button type="submit">Submit</button></div>
       </form>
 
       <div class="contt">
@@ -51,8 +72,11 @@
           <h3><%= book.pages%></h3>
           <br />
         </div>
-        <div class="image-cont">
-          <img src="/assets/images/books/<%=book.book_id%>.jpg" alt="" />
+        <div class="image-contt">
+          <img
+            src="/assets/images/books/<%=book.book_id%>.jpg"
+            alt="Book Cover"
+          />
         </div>
       </div>
     </div>

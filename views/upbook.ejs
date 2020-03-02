@@ -8,6 +8,10 @@
       href="../assets/images/favicon.ico"
       type="image/x-icon"
     />
+    <script
+      src="https://kit.fontawesome.com/31957ff6ff.js"
+      crossorigin="anonymous"
+    ></script>
     <title>LibSol</title>
   </head>
   <body>
@@ -17,6 +21,9 @@
       </div>
       <nav>
         <ul>
+          <li>
+            <a class="anim" href="/request"><i class="fas fa-search"></i></a>
+          </li>
           <li><a class="anim" href="/">Home</a></li>
           <li><a class="anim" href="/contact">Contact us</a></li>
           <li><a class="anim" href="/adminLogin">Admin Login</a></li>
@@ -24,5 +31,43 @@
         </ul>
       </nav>
     </header>
+    <div class="up-main-cont">
+      <form action="/dashboard/updatebook" method="POST">
+        <div class="table-cont">
+          <table class="return-table">
+            <tr>
+              <td><h3>Transaction ID:</h3></td>
+              <td>
+                <input
+                  type="text"
+                  name="transaction_id"
+                  id="transaction_id"
+                  placeholder="Transaction ID"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><h3>Book ID:</h3></td>
+              <td>
+                <input
+                  type="text"
+                  name="book_id"
+                  id="book_id"
+                  placeholder="Book ID"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><h3>Date:</h3></td>
+              <td><input type="date" name="reDate" id="reDate" required /></td>
+            </tr>
+          </table>
+
+          <div class="btn"><button type="submit">Submit</button></div>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

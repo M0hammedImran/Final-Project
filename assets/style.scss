@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Segoe UI', 'Ubuntu Mono', 'sans-serif';
 }
 body {
   background-color: #08aeea;
@@ -194,6 +194,9 @@ button {
 .image-cont img {
   width: 20rem;
 }
+.image-contt img {
+  width: 15rem;
+}
 .err-mes-img img {
   width: 20rem;
 }
@@ -210,9 +213,6 @@ button {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    h3 {
-      font-weight: normal;
-    }
   }
 }
 .rq-btn {
@@ -372,6 +372,26 @@ button {
         text-align: left;
         color: black;
       }
+    }
+  }
+}
+.table-cont {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .return-table {
+    padding: 1em;
+    width: 40%;
+    height: 15em;
+    input {
+      width: 18em;
+      height: 3em;
+      border-radius: 0.5em;
+      border: none;
+      outline: none;
+      padding-left: 1em;
     }
   }
 }
