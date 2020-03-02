@@ -34,6 +34,7 @@
     <div class="up-main-cont">
       <form action="/dashboard/updatebook" method="POST">
         <div class="table-cont">
+          <% if (message.length !== 0) { %> <%= message %> <% } %>
           <table class="return-table">
             <tr>
               <td><h3>Transaction ID:</h3></td>
@@ -60,8 +61,10 @@
               </td>
             </tr>
             <tr>
-              <td><h3>Date:</h3></td>
-              <td><input type="date" name="reDate" id="reDate" required /></td>
+              <td><h3>User ID:</h3></td>
+              <td>
+                <input type="text" name="user_id" id="user_id" required />
+              </td>
             </tr>
           </table>
 

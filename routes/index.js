@@ -6,6 +6,7 @@ const mysqlConnection = require('../connection');
 let validId;
 var row = [];
 var userinfo = [];
+let emess = '';
 
 const event = new Date();
 let dateArray = event
@@ -24,9 +25,10 @@ let dateArray3 = event2
 let dateArray4 = (dateArray3[0] + '').split('/');
 var tomorrow = `${dateArray4[0]}.${dateArray4[1]}.${+dateArray4[2]}`;
 
-console.log(`Borrowing Date: ${today}`);
-console.log(`Borrowing Date: ${tomorrow}`);
+// console.log(`Borrowing Date: ${today}`);
+// console.log(`Borrowing Date: ${tomorrow}`);
 
+let tran_table = '';
 let sqlAdmin = [];
 mysqlConnection.query(
   'SELECT * FROM libsol_db.admin_table',
@@ -88,7 +90,8 @@ router.get('/dashboard/viewbook', (req, res) => {
   );
 });
 router.get('/dashboard/updatebook', (req, res) => {
-  res.render('upbook');
+  console.log(emess);
+  res.render('upbook', { message: emess });
 });
 
 router.get('/register', (req, res) => res.render('register'));
@@ -128,7 +131,7 @@ router.get('/request/search', (req, res) => {
         // console.log(err);
       } else {
         console.log(err);
-        res.render('request', { message: 'no such book is available' });
+        res.render('request', { message: 'No such book is available' });
       }
     }
   );
@@ -152,7 +155,7 @@ router.get('/request/someerror', (req, res) => {
   res.render('someerror');
 });
 router.get('/request/success', (req, res) => {
-  res.render('success');
+  res.render('success', { data: tran_table });
 });
 
 router.get('/user', (req, res) => res.render('user'));
@@ -273,8 +276,7 @@ router.post('/request/auth', (req, res) => {
 });
 
 router.post('/request/last', (req, res) => {
-  trans_msg = `${userinfo[0].firstName} ${userinfo[0].lastName} 
-  borrowed ${row[0].book_name} on ${today} and have to return it by ${tomorrow}`;
+  trans_msg = `${userinfo[0].firstName} ${userinfo[0].lastName} borrowed ${row[0].book_name} on ${today} and have to return it by ${tomorrow}`;
 
   let trans = {
     transaction_id: keyGenSmall(),
@@ -299,14 +301,22 @@ router.post('/request/last', (req, res) => {
             trans,
             (err, rows, fields) => {
               if (!err) {
-                console.log('Success!');
+                // console.log(rows);
                 mysqlConnection.query(
-                  `UPDATE libsol_db.books_table SET copies=${row[0].copies -
-                    1} WHERE book_id=${row[0].book_id}`,
+                  `UPDATE libsol_db.books_table SET copies=copies-1 WHERE book_id=${row[0].book_id}`,
                   (err, rows, fields) => {
                     if (!err) {
                       // console.log(`${rows.toSrting()} : ${fields}`);
-                      res.redirect('/request/success');
+                      mysqlConnection.query(
+                        `SELECT * FROM libsol_db.transaction_table WHERE user_id=${req.body.user_id}`,
+                        (err, rows, fields) => {
+                          if (!err) {
+                            tran_table = '';
+                            tran_table = rows[0];
+                            res.redirect('/request/success');
+                          }
+                        }
+                      );
                     } else {
                       console.log(err);
                       res.redirect('/request/someerror');
@@ -323,7 +333,40 @@ router.post('/request/last', (req, res) => {
       } else console.log(err);
     }
   );
-  // res.send(trans);
+});
+
+router.post('/dashboard/updatebook', (req, res) => {
+  // console.log(req.body);
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.transaction_table WHERE transaction_id=${req.body.transaction_id}`,
+    (err, rows, fields) => {
+      if (rows.toString().length !== 0) {
+        emess = '';
+        mysqlConnection.query(
+          `UPDATE libsol_db.transaction_table SET returned='true', returned_on='${today}' WHERE transaction_id=${req.body.transaction_id}`,
+          (err, rows, fields) => {
+            console.log(err);
+            if (rows.toString().length !== 0) {
+              mysqlConnection.query(
+                `UPDATE libsol_db.books_table SET copies=copies+1 WHERE book_id=${req.body.book_id}`,
+                (err, rows, fields) => {
+                  if (!err) {
+                    res.redirect('/dashboard');
+                  } else console.log(err);
+                }
+              );
+            } else console.log(err);
+          }
+        );
+      } else {
+        // console.log(err)
+        emess = 'Check the Transaction ID and try again.';
+        console.log(emess);
+        res.redirect('/dashboard/updatebook');
+      }
+    }
+  );
+  // res.send(req.body);
 });
 
 const keyGen = () => (Math.random() + '').substring(2, 10);

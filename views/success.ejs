@@ -32,11 +32,27 @@
     </header>
     <div class="succ-main-cont">
       <h2>Success</h2>
-
       <p>
         <strong>Note</strong> : Transaction ID is to be produced while returning
         the Book.
       </p>
+      <div class="info">
+        <h2>Transaction ID</h2>
+        <h3><%= data.transaction_id%></h3>
+        <br />
+        <h2>User ID</h2>
+        <h3><%= data.user_id%></h3>
+        <br />
+        <h2>Book ID</h2>
+        <h3><%= data.book_id%></h3>
+        <br />
+        <h2>Due Date</h2>
+        <h3><%= data.due_date%></h3>
+        <br />
+      </div>
+      <div class="image-cont">
+        <img src="/assets/images/books/<%=data.book_id%>.jpg" alt="" />
+      </div>
     </div>
   </body>
 </html>

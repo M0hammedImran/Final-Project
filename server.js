@@ -109,6 +109,7 @@ app.post('/logout', (req, res) => {
 });
 app.post('/request/book', router);
 app.post('/request/last', router);
+app.post('/dashboard/updatebook', router);
 // End POST
 
 const PORT = process.env.PORT || 3000;
