@@ -114,7 +114,7 @@ app.post('/dashboard/updatebook', router);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`Server Running at port: ${PORT}`));
+app.listen(PORT, () => console.log(`Click on link: http://localhost:${PORT}/`));
 
 // bcrypt.genSalt(10, function(err, salt) {
 //   bcrypt.hash('12345678', salt, (err, hash) => {

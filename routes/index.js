@@ -277,7 +277,6 @@ router.post('/request/auth', (req, res) => {
 
 router.post('/request/last', (req, res) => {
   trans_msg = `${userinfo[0].firstName} ${userinfo[0].lastName} borrowed ${row[0].book_name} on ${today} and have to return it by ${tomorrow}`;
-
   let trans = {
     transaction_id: keyGenSmall(),
     user_id: req.body.user_id,
@@ -287,9 +286,10 @@ router.post('/request/last', (req, res) => {
     transaction_message: trans_msg
   };
   mysqlConnection.query(
-    'SELECT * FROM libsol_db.transaction_table',
+    `SELECT * FROM libsol_db.transaction_table WHERE user_id='${req.body.user_id}'`,
     (err, rows, fields) => {
       if (!err) {
+        console.log(rows);
         transData = rows;
         let notval = transData.find(
           invalidUser => invalidUser.user_id === trans.user_id
@@ -301,7 +301,6 @@ router.post('/request/last', (req, res) => {
             trans,
             (err, rows, fields) => {
               if (!err) {
-                // console.log(rows);
                 mysqlConnection.query(
                   `UPDATE libsol_db.books_table SET copies=copies-1 WHERE book_id=${row[0].book_id}`,
                   (err, rows, fields) => {
@@ -343,7 +342,7 @@ router.post('/dashboard/updatebook', (req, res) => {
       if (rows.toString().length !== 0) {
         emess = '';
         mysqlConnection.query(
-          `UPDATE libsol_db.transaction_table SET returned='true', returned_on='${today}' WHERE transaction_id=${req.body.transaction_id}`,
+          `DELETE FROM libsol_db.transaction_table WHERE transaction_id=${req.body.transaction_id}`,
           (err, rows, fields) => {
             console.log(err);
             if (rows.toString().length !== 0) {
@@ -359,14 +358,12 @@ router.post('/dashboard/updatebook', (req, res) => {
           }
         );
       } else {
-        // console.log(err)
         emess = 'Check the Transaction ID and try again.';
         console.log(emess);
         res.redirect('/dashboard/updatebook');
       }
     }
   );
-  // res.send(req.body);
 });
 
 const keyGen = () => (Math.random() + '').substring(2, 10);
