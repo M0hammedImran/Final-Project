@@ -112,6 +112,21 @@ nav ul {
           flex-direction: column;
 }
 
+.text-container h1::-moz-selection {
+  background-color: black;
+  color: white;
+}
+
+.text-container h1::selection {
+  background-color: black;
+  color: white;
+}
+
+.text-container h1::-moz-selection {
+  background-color: black;
+  color: white;
+}
+
 .btn-container {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;

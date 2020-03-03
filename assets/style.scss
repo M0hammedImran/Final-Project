@@ -65,6 +65,14 @@ nav {
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
   flex-direction: column;
+  h1::selection {
+    background-color: black;
+    color: white;
+  }
+  h1::-moz-selection {
+    background-color: black;
+    color: white;
+  }
 }
 .btn-container {
   grid-column: 2 / span 1;
