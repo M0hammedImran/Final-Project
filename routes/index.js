@@ -4,9 +4,27 @@ const passport = require('passport');
 const mysqlConnection = require('../connection');
 
 let validId;
+
 var row = [];
 var userinfo = [];
 let emess = '';
+var umess = [];
+var booksvalue = [];
+
+//loading admin values
+let sqlAdmin = [];
+mysqlConnection.query(
+  'SELECT * FROM libsol_db.admin_table',
+  (err, rows, fields) => {
+    if (!err) {
+      rows.forEach(row => {
+        sqlAdmin.push(row);
+      });
+    } else {
+      console.log(err);
+    }
+  }
+);
 
 const event = new Date();
 let dateArray = event
@@ -29,24 +47,22 @@ var tomorrow = `${dateArray4[0]}.${dateArray4[1]}.${+dateArray4[2]}`;
 // console.log(`Borrowing Date: ${tomorrow}`);
 
 let tran_table = '';
-let sqlAdmin = [];
-mysqlConnection.query(
-  'SELECT * FROM libsol_db.admin_table',
-  (err, rows, fields) => {
-    if (!err) {
-      adminData = rows;
-      sqlAdmin.push(adminData);
-    } else {
-      console.log(err);
-    }
-  }
-);
+
 // Get Request
 router.get('/', (req, res) => res.render('index'));
 router.get('/adminLogin', (req, res) => res.render('login'));
-router.get('/contact', (req, res) => res.render('contact'));
+router.get('/contact', (req, res) =>
+  res.render('contact', { admins: sqlAdmin })
+);
 router.get('/dashboard', (req, res) =>
-  res.render('dashboard', { name: 'Admin' })
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.admin_table`,
+    (err, rows, fields) => {
+      if (rows.toString().length !== 0) {
+        res.render('dashboard', { umess: umess, rows: rows[0] });
+      }
+    }
+  )
 );
 
 router.get('/dashboard/adduser', (req, res) => {
@@ -74,6 +90,12 @@ router.get('/dashboard/addbook', (req, res) => {
 });
 router.get('/dashboard/removebook', (req, res) => {
   res.render('rmbook');
+});
+router.get('/dashboard/checkbookremoval', (req, res) => {
+  res.render('checkbook', { book: row[0] });
+});
+router.get('/dashboard/checkuserremoval', (req, res) => {
+  res.render('checkuser', { user: userinfo[0] });
 });
 router.get('/dashboard/viewbook', (req, res) => {
   mysqlConnection.query(
@@ -149,7 +171,7 @@ router.get('/request/auth', (req, res) =>
   res.render('confirm', { book: row[0] })
 );
 router.get('/request/error', (req, res) => {
-  res.render('error');
+  res.render('error', { emess: emessArray });
 });
 router.get('/request/someerror', (req, res) => {
   res.render('someerror');
@@ -189,6 +211,21 @@ router.get('/user/info', (req, res) => {
           message: 'Sorry! Unable to fetch Data Try Again.'
         });
       }
+    }
+  );
+});
+
+router.get('/viewall', (req, res) => {
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.books_table`,
+    (err, rows, fields) => {
+      let books;
+      if (!err) {
+        books = rows;
+      } else {
+        console.log(err);
+      }
+      res.render('viewall', { books: books });
     }
   );
 });
@@ -259,6 +296,11 @@ router.post('/request/book', (req, res) => {
 });
 
 router.post('/request/auth', (req, res) => {
+  // mysqlConnection.query(
+  //   `SELECT * FROM libsol_db.transaction_table WHERE user_id`,
+  //   (err, rows, fields) => {
+  //     if (!err) {
+  //       if (rows.toString().length == 0) {
   mysqlConnection.query(
     `SELECT * FROM libsol_db.user_table WHERE user_id=${req.body.user_id}`,
     (err, rows, fields) => {
@@ -273,6 +315,12 @@ router.post('/request/auth', (req, res) => {
       }
     }
   );
+  // }else{
+  //   errorMessage=''
+  // }
+  // }
+  // }
+  // );
 });
 
 router.post('/request/last', (req, res) => {
@@ -294,8 +342,15 @@ router.post('/request/last', (req, res) => {
         let notval = transData.find(
           invalidUser => invalidUser.user_id === trans.user_id
         );
-        if (notval) res.redirect('/request/error');
-        else if (notval == undefined) {
+        if (notval) {
+          // console;
+          emessArray = [];
+          if (notval.due_date.toString() == today) {
+            emessArray.push(notval);
+            console.log(emessArray);
+          }
+          res.redirect('/request/error');
+        } else if (notval == undefined) {
           mysqlConnection.query(
             'INSERT INTO libsol_db.transaction_table SET ?',
             trans,
@@ -350,6 +405,9 @@ router.post('/dashboard/updatebook', (req, res) => {
                 `UPDATE libsol_db.books_table SET copies=copies+1 WHERE book_id=${req.body.book_id}`,
                 (err, rows, fields) => {
                   if (!err) {
+                    umess = [];
+                    umess = 'Book Updated Successfully!';
+                    console.log(umess);
                     res.redirect('/dashboard');
                   } else console.log(err);
                 }
@@ -366,7 +424,133 @@ router.post('/dashboard/updatebook', (req, res) => {
   );
 });
 
+router.post('/dashboard/removebook', (req, res) => {
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.books_table WHERE book_id=${req.body.book_id}`,
+    (err, rows, fields) => {
+      if (!err) {
+        if (rows.toString().length !== 0) {
+          row = [];
+          row.push(rows[0]);
+          res.redirect('/dashboard/checkbookremoval');
+        } else {
+          umess = '';
+          umess = 'Wrong Book ID';
+          res.redirect('/dashboard');
+        }
+      } else {
+        console.log(err);
+        res.redirect('/dashboard');
+      }
+    }
+  );
+});
+
+router.post('/dashboard/confirmbookremoval', (req, res) => {
+  mysqlConnection.query(
+    `DELETE FROM libsol_db.books_table WHERE book_id=${row[0].book_id}`,
+    (err, rows, fields) => {
+      if (!err) {
+        if (rows.toString().length !== 0) {
+          umess = [];
+          umess = 'Book Removed Successfully!';
+          console.log(umess);
+          res.redirect('/dashboard');
+        }
+      } else {
+        console.log(err);
+        umess = [];
+        umess = 'Book Removal was Unsuccessful!';
+        console.log(umess);
+        res.redirect('/dashboard');
+      }
+    }
+  );
+});
+
+router.post('/dashboard/removeuser', (req, res) => {
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.user_table WHERE user_id=${req.body.user_id}`,
+    (err, rows, fields) => {
+      if (!err) {
+        if (rows.toString().length !== 0) {
+          userinfo = [];
+          userinfo.push(rows[0]);
+          console.log(userinfo);
+          res.redirect('/dashboard/checkuserremoval');
+        } else {
+          umess = '';
+          umess = 'Wrong User ID';
+          res.redirect('/dashboard');
+        }
+      } else {
+        console.log(err);
+        res.redirect('/dashboard');
+      }
+    }
+  );
+});
+
+router.post('/dashboard/confirmuserremoval', (req, res) => {
+  mysqlConnection.query(
+    `DELETE FROM libsol_db.user_table WHERE user_id=${userinfo[0].user_id}`,
+    (err, rows, fields) => {
+      if (!err) {
+        if (rows.toString().length !== 0) {
+          umess = [];
+          umess = 'User Removed Successfully!';
+          console.log(umess);
+          res.redirect('/dashboard');
+        }
+      } else {
+        console.log(err);
+        umess = [];
+        umess = 'User Removal was Unsuccessful!';
+        console.log(umess);
+        res.redirect('/dashboard');
+      }
+    }
+  );
+});
+
+// router.post('/viewall',(err,rows,fields)=>{
+// re
+// })
+
 const keyGen = () => (Math.random() + '').substring(2, 10);
 const keyGenSmall = () => (Math.random() + '').substring(2, 6);
-
+const viewall = () => {
+  mysqlConnection.query(
+    `SELECT * FROM libsol_db.books_table`,
+    (err, rows, fields) => {
+      if (!err) {
+        if (rows.toString().length !== 0) {
+          // console.log(rows);
+          booksvalue = [];
+          booksvalue.push(rows[0]);
+        }
+      } else {
+        console.log(err);
+      }
+    }
+  );
+};
+viewall();
+// const transactions = () => {
+//   mysqlConnection.query(
+//     `SELECT * FROM libsol_db.transaction_table`,
+//     (err, rows, fields) => {
+//       if (!err) {
+//         if (rows.toString().length !== 0) {
+//           console.log(rows[0]);
+//           transact = [];
+//           transact.push(rows[0]);
+//         }
+//       } else {
+//         console.log(err);
+//       }
+//     }
+//   );
+// };
+// transactions();
 module.exports = router;

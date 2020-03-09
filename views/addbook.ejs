@@ -31,5 +31,70 @@
         </ul>
       </nav>
     </header>
+    <div class="form-container">
+      <form action="/dashboard/addbook" method="POST">
+        <div class="main">
+          <input
+            type="text"
+            name="book_id"
+            id="book_id"
+            placeholder="Book ID"
+            required
+          />
+          <input
+            type="text"
+            name="book_name"
+            id="book_name"
+            placeholder="Book Name"
+            required
+          />
+          <input
+            type="text"
+            name="author"
+            id="author"
+            placeholder="Author"
+            required
+          />
+          <input
+            type="text"
+            name="publisher"
+            id="publisher"
+            placeholder="Publisher"
+            required
+          />
+          <input
+            type="text"
+            name="published_year"
+            id="published_year"
+            placeholder="Published Year"
+            required
+          />
+          <input
+            type="text"
+            name="origin_country"
+            id="origin_country"
+            placeholder="Origin/Country"
+            required
+          />
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            placeholder="No. of Pages"
+            required
+          />
+          <input
+            type="text"
+            name="copies"
+            id="copies"
+            placeholder="No. of Copies"
+            required
+          />
+          <input type="file" name="cover" id="cover" required />
+          <button type="submit">Submit</button>
+          <button onclick="window.location.href='/dashboard'">Cancel</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

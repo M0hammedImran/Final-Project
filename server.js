@@ -14,8 +14,9 @@ mysqlConnection.query(
   'SELECT * FROM libsol_db.admin_table',
   (err, rows, fields) => {
     if (!err) {
-      adminData = rows[0];
-      sqlAdmin.push(adminData);
+      rows.forEach(row => {
+        sqlAdmin.push(row);
+      });
     } else {
       console.log(err);
     }
@@ -88,12 +89,16 @@ app.get('/dashboard/updateuser', checkAuthenticated, router);
 app.get('/dashboard/viewuser', checkAuthenticated, router);
 app.get('/dashboard/addbook', checkAuthenticated, router);
 app.get('/dashboard/removebook', checkAuthenticated, router);
+app.get('/dashboard/removeuser', checkAuthenticated, router);
+app.get('/dashboard/checkbookremoval', checkAuthenticated, router);
+app.get('/dashboard/checkuserremoval', checkAuthenticated, router);
 app.get('/dashboard/viewbook', checkAuthenticated, router);
 app.get('/dashboard/updatebook', checkAuthenticated, router);
 app.get('/register', checkNotAuthenticated, router);
 app.get('/user', router);
 app.get('/user/info', router);
 app.get('/request', router);
+app.get('/viewall', router);
 app.get('/request/invoice', router);
 app.get('/request/search', router);
 app.get('/**', router);
@@ -110,6 +115,11 @@ app.post('/logout', (req, res) => {
 app.post('/request/book', router);
 app.post('/request/last', router);
 app.post('/dashboard/updatebook', router);
+app.post('/dashboard/removebook', router);
+app.post('/dashboard/removeuser', router);
+app.post('/dashboard/confirmbookremoval', router);
+app.post('/dashboard/confirmuserremoval', router);
+// app.post('/viewall', router);
 // End POST
 
 const PORT = process.env.PORT || 3000;
@@ -119,11 +129,12 @@ app.listen(PORT, () => console.log(`Click on link: http://localhost:${PORT}/`));
 // bcrypt.genSalt(10, function(err, salt) {
 //   bcrypt.hash('12345678', salt, (err, hash) => {
 //     if (err) throw err;
-//     let pass = { password: hash };
-//     admin.push(pass);
-//     let data = JSON.stringify(admin, null, 2);
-//     fs.writeFile('./files/admin.json', data, err => {
-//       if (err) throw err;
-//     });
+//     // let pass = { password: hash };
+//     // admin.push(pass);
+//     // let data = JSON.stringify(admin, null, 2);
+
+//     // fs.writeFile('./files/admin.json', data, err => {
+//     //   if (err) throw err;
+//     // });
 //   });
 // });

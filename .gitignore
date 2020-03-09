@@ -6,3 +6,4 @@ files/admin.json
 assets/images/books
 sendgrid.env
 *.swp
+assets/images

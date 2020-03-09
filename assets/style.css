@@ -5,6 +5,8 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Montserrat', 'Segoe UI', 'Ubuntu Mono', 'sans-serif';
+  scrollbar-color: #08aeea #2af598;
+  scrollbar-width: thin;
 }
 
 body {
@@ -142,7 +144,7 @@ nav ul {
   outline: none;
   border: none;
   background-color: #1061cc;
-  color: blanchedalmond;
+  color: #f8f8f8;
   border-radius: 100px;
   font-size: 18px;
   font-weight: bold;
@@ -640,4 +642,54 @@ button {
   border: none;
   outline: none;
   padding-left: 1em;
+}
+
+.main-book-view {
+  margin-left: 2em;
+}
+
+.main-book-view ol > li {
+  margin: 0;
+  padding: 0 0 0 2em;
+  text-indent: -2em;
+  list-style-type: decimal-leading-zero;
+}
+
+.sub-btn button {
+  height: 70px;
+  width: 200px;
+  outline: none;
+  border: none;
+  background-color: #1061cc;
+  color: #f8f8f8;
+  border-radius: 100px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* width */
+::-moz-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2af598;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #08aeea;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #21c87d;
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    background-color: #fff;
+  }
 }

@@ -32,6 +32,9 @@
     </header>
     <div class="succ-main-cont">
       <h2>Message : You already have borrowed a book!</h2>
+      <% if (emess.toString().length!==0 ) { %> You have reached the limit
+      <strong>due_date:</strong> <%=emess[0].due_date%></br> You will be Charged with a fine of Rs.xxx
+      for every 15 days <% } %>
     </div>
   </body>
 </html>
