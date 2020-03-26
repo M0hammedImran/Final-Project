@@ -9,6 +9,16 @@
   scrollbar-width: thin;
 }
 
+*::-moz-selection {
+  color: #272727;
+  background-color: #fff;
+}
+
+*::selection {
+  color: #272727;
+  background-color: #fff;
+}
+
 body {
   background-color: #08aeea;
   background-image: linear-gradient(225deg, #08aeea 0%, #2af598 84%);
@@ -47,6 +57,16 @@ header .logo {
   font-weight: bold;
 }
 
+.logo a::-moz-selection {
+  color: #fff;
+  background-color: #272727;
+}
+
+.logo a::selection {
+  color: #fff;
+  background-color: #272727;
+}
+
 nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -82,8 +102,18 @@ nav ul {
           align-items: center;
 }
 
+nav a::-moz-selection {
+  color: #fff;
+  background-color: #272727;
+}
+
+nav a::selection {
+  color: #fff;
+  background-color: #272727;
+}
+
 .main-container {
-  height: 90vh;
+  height: 92vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 4fr 1fr;
@@ -209,12 +239,16 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .search-bar {
@@ -236,10 +270,9 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 10rem;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -266,8 +299,8 @@ button {
 }
 
 .instructions {
-  width: 60rem;
-  height: 30vh;
+  width: 60em;
+  height: 20vh;
   font-size: 16px;
   padding: 1rem;
 }
@@ -280,6 +313,37 @@ button {
   font-size: 16px;
   font-weight: bold;
   color: black;
+}
+
+.note {
+  width: 60em;
+  height: 20vh;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.note .view-btn button {
+  height: 3.2em;
+  width: 12em;
+  outline: none;
+  border: none;
+  background-color: #1061cc;
+  color: #f8f8f8;
+  border-radius: 1.5em;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .message {
@@ -346,6 +410,24 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.main-cont form input {
+  width: 20rem;
+  height: 3rem;
+  border-radius: 0.3rem;
+  border: none;
+  padding: 18px 9px;
+  font-size: 18px;
+  color: black;
+}
+
+.main-cont form .sub-btn button {
+  width: 10rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  display: block;
 }
 
 .main-cont .contt {
@@ -644,8 +726,20 @@ button {
   padding-left: 1em;
 }
 
-.main-book-view {
+.main-admin-view {
+  margin-top: 1em;
   margin-left: 2em;
+  height: 87vh;
+  width: 90%;
+}
+
+.main-admin-view ul > li {
+  margin: 2em 0;
+  list-style-type: disc;
+}
+
+.main-book-view {
+  margin: 1em 0em 0em 3em;
 }
 
 .main-book-view ol > li {
@@ -653,6 +747,17 @@ button {
   padding: 0 0 0 2em;
   text-indent: -2em;
   list-style-type: decimal-leading-zero;
+}
+
+.main-book-view hr {
+  width: 100%;
+  display: block;
+  margin: 0 -2em;
+  height: 0.2em;
+  color: black;
+  background: #000;
+  outline: none;
+  border: none;
 }
 
 .sub-btn button {
@@ -666,6 +771,14 @@ button {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.succ-main-cont {
+  text-align: center;
+}
+
+.succ-main-cont h2 {
+  margin-top: 2rem;
 }
 
 /* width */

@@ -30,21 +30,21 @@
         </ul>
       </nav>
     </header>
-    <div class="">
-      <div class="main-book-view">
-        <ol>
-          <% admins.forEach(admin => {%>
-          <li>
-            <h2><%=admin.name%></h2>
-            <br />
-            <h3><%=admin.phone%></h3>
-          </li>
+
+    <div class="main-admin-view">
+      <ul>
+        <% admins.forEach(admin => {%>
+        <li>
+          <h2 style="text-align: left;">
+            Name: <%=admin.name.toUpperCase()%>
+          </h2>
           <br />
-          <hr />
-          <br />
-          <%});%>
-        </ol>
-      </div>
+          <p><strong>Phone No:</strong> <%=admin.phone%></p>
+          <p><strong>Email:</strong> <%=admin.email%></p>
+        </li>
+
+        <%});%>
+      </ul>
     </div>
   </body>
 </html>

@@ -19,13 +19,13 @@ mysqlConnection.query(
     if (!err) {
       rows.forEach(row => {
         sqlAdmin.push(row);
+        console.log(sqlAdmin);
       });
     } else {
       console.log(err);
     }
   }
 );
-
 const event = new Date();
 let dateArray = event
   .toLocaleString('en-GB')

@@ -48,21 +48,23 @@
             <button class="search-btn" type="submit">Submit</button>
           </div>
         </div>
-        <div class="instructions">
-          <h2>Note:</h2>
-          <p>
-            If You have been redirected to this page then the server has
-            encountered an error. <b>Try Again</b> after some time!
-          </p>
-          <br />
-          <p class="pp">If Not, then please continue.</p>
-        </div>
-        <div class="view-btn"></div>
       </form>
-      <form action="/viewall" method="GET">
-        <button>
-          View All Books
-        </button>
+      <div class="instructions">
+        <h2>Note:</h2>
+        <p>
+          If You have been redirected to this page then the server has
+          encountered an error. <b>Try Again</b> after some time!
+        </p>
+        <br />
+        <p class="pp">If Not, then please continue.</p>
+      </div>
+      <form class="note" action="/viewall" method="GET">
+        <p>If you want to view all the books, Press the below Button.</p>
+        <div class="view-btn">
+          <button>
+            View All Books
+          </button>
+        </div>
       </form>
     </div>
   </body>
