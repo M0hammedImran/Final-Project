@@ -474,6 +474,8 @@ button {
 
 .main-book-view {
   margin: 1em 0em 0em 3em;
+  min-height: 90vh;
+  max-height: fit-content;
   ol > li {
     margin: 0;
     padding: 0 0 0 2em;
