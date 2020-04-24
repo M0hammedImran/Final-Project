@@ -28,8 +28,8 @@
           align-items: center;
 }
 
-.main {
-  width: 350px;
+.grid-layout .main {
+  width: 400px;
   height: 40vh;
   background-color: white;
   display: -ms-grid;
@@ -41,25 +41,25 @@
   border-radius: 1em;
 }
 
-.main .text {
+.grid-layout .main .text {
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2 / span 1;
 }
 
-.main .admin {
+.grid-layout .main .admin {
   -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   grid-row: 4 / span 1;
 }
 
-.main .password {
+.grid-layout .main .password {
   -ms-grid-row: 6;
   -ms-grid-row-span: 1;
   grid-row: 6 / span 1;
 }
 
-.main .btn {
+.grid-layout .main .btn {
   -ms-grid-row: 8;
   -ms-grid-row-span: 1;
   grid-row: 8 / span 1;
@@ -67,10 +67,10 @@
       justify-content: space-around;
 }
 
-.main .admin,
-.main .text,
-.main .password,
-.main .btn {
+.grid-layout .main .admin,
+.grid-layout .main .text,
+.grid-layout .main .password,
+.grid-layout .main .btn {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2 / span 1;

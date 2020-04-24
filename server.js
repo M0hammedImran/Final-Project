@@ -14,7 +14,7 @@ mysqlConnection.query(
   'SELECT * FROM libsol_db.admin_table',
   (err, rows, fields) => {
     if (!err) {
-      rows.forEach(row => {
+      rows.forEach((row) => {
         sqlAdmin.push(row);
       });
     } else {
@@ -30,8 +30,8 @@ app.use('/assets', express.static(path.join(__dirname, '/assets')));
 const initializePassport = require('./passport-config');
 initializePassport(
   passport,
-  email => sqlAdmin.find(user => user.email === email),
-  id => sqlAdmin.find(user => user.id === id)
+  (email) => sqlAdmin.find((user) => user.email === email),
+  (id) => sqlAdmin.find((user) => user.id === id)
 );
 
 // EJS
@@ -45,7 +45,7 @@ app.use(
   session({
     secret: 'woff',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 
@@ -129,12 +129,12 @@ app.listen(PORT, () => console.log(`Click on link: http://localhost:${PORT}/`));
 // bcrypt.genSalt(10, function(err, salt) {
 //   bcrypt.hash('12345678', salt, (err, hash) => {
 //     if (err) throw err;
-//     // let pass = { password: hash };
-//     // admin.push(pass);
-//     // let data = JSON.stringify(admin, null, 2);
+//      let pass = { password: hash };
+//     admin.push(pass);
+//      let data = JSON.stringify(admin, null, 2);
 
-//     // fs.writeFile('./files/admin.json', data, err => {
-//     //   if (err) throw err;
-//     // });
+//      fs.writeFile('./files/admin.json', data, err => {
+//       if (err) throw err;
+//      });
 //   });
 // });

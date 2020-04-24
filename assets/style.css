@@ -22,6 +22,7 @@
 body {
   background-color: #08aeea;
   background-image: linear-gradient(225deg, #08aeea 0%, #2af598 84%);
+  height: 100vh;
 }
 
 header {
@@ -774,11 +775,206 @@ button {
 }
 
 .succ-main-cont {
+  min-height: 88vh;
   text-align: center;
 }
 
 .succ-main-cont h2 {
   margin-top: 2rem;
+}
+
+.succ-main-cont .container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  text-align: left;
+}
+
+.succ-main-cont .t-cont {
+  margin-top: 2em;
+  min-height: 8em;
+}
+
+.form-container.addbook {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-container .main.book {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 10fr 1fr;
+      grid-template-columns: 1fr 10fr 1fr;
+  -ms-grid-rows: (1fr 2fr)[6] 1fr;
+      grid-template-rows: repeat(6, 1fr 2fr) 1fr;
+  border-radius: 1em;
+}
+
+.form-container .main.book input {
+  width: 19em;
+  height: 3em;
+  border: none;
+  border-bottom: 2px solid #08aeea;
+  border-radius: 0.1em;
+  padding: 0 1em;
+  font-size: 15px;
+  color: black;
+  position: relative;
+}
+
+.form-container .main.book input:focus {
+  border-bottom: 2px solid #2af598;
+  outline: none;
+}
+
+.id-name,
+.auth-pub,
+.pub-orc,
+.page-copy,
+#cover,
+.sub-can {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.id-name {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / span 1;
+}
+
+.auth-pub {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4 / span 1;
+}
+
+.pub-orc {
+  -ms-grid-row: 6;
+  -ms-grid-row-span: 1;
+  grid-row: 6 / span 1;
+}
+
+.page-copy {
+  -ms-grid-row: 8;
+  -ms-grid-row-span: 1;
+  grid-row: 8 / span 1;
+}
+
+#cover {
+  -ms-grid-row: 10;
+  -ms-grid-row-span: 1;
+  grid-row: 10 / span 1;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#cover input {
+  border-bottom: none;
+}
+
+#cover input:focus {
+  border-bottom: none;
+  outline: none;
+}
+
+.main-contt {
+  height: 90vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rm-main {
+  background: white;
+  width: 350px;
+  height: 180px;
+  border-radius: 1em;
+}
+
+.rm-main form {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.rm-main input {
+  width: 19em;
+  height: 3em;
+  border: none;
+  border-bottom: 2px solid #08aeea;
+  border-radius: 0.1em;
+  padding: 0 1em;
+  font-size: 15px;
+  color: black;
+  position: relative;
+}
+
+.rm-main input:focus {
+  border-bottom: 2px solid #2af598;
+  outline: none;
+}
+
+.rm-main .btn-cont {
+  width: 100%;
+  height: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sub-can {
+  -ms-grid-row: 12;
+  -ms-grid-row-span: 1;
+  grid-row: 12 / span 1;
 }
 
 /* width */

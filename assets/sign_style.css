@@ -6,20 +6,12 @@
 .form-container {
   width: 100%;
   height: 92vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-.main {
-  width: 750px;
-  height: 85vh;
+.form-container .main {
+  width: 800px;
+  height: 80vh;
+  margin: 0 auto;
   background-color: white;
   display: -ms-grid;
   display: grid;
@@ -30,31 +22,31 @@
   border-radius: 1em;
 }
 
-.main .name-container {
+.form-container .main .name-container {
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2 / span 1;
 }
 
-.main .gender_date {
+.form-container .main .gender_date {
   -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   grid-row: 4 / span 1;
 }
 
-.main .address {
+.form-container .main .address {
   -ms-grid-row: 6;
   -ms-grid-row-span: 1;
   grid-row: 6 / span 1;
 }
 
-.main .email {
+.form-container .main .email {
   -ms-grid-row: 8;
   -ms-grid-row-span: 1;
   grid-row: 8 / span 1;
 }
 
-.main .btn {
+.form-container .main .btn {
   -ms-grid-row: 10;
   -ms-grid-row-span: 1;
   grid-row: 10 / span 1;
@@ -123,6 +115,8 @@
 
 .note {
   text-align: center;
+  height: 4em;
+  width: 100%;
 }
 
 /* Chrome, Edge, Safari*/

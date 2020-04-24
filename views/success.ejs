@@ -1,57 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="/assets/style.css" />
-    <link
-      rel="shortcut icon"
-      href="../assets/images/favicon.ico"
-      type="image/x-icon"
-    />
-    <script
-      src="https://kit.fontawesome.com/31957ff6ff.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>LibSol</title>
+    <%- include('Head'); -%>
   </head>
   <body>
-    <header>
-      <div class="logo">
-        <a href="/">LibSol</a>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <a class="anim" href="/request"><i class="fas fa-search"></i></a>
-          </li>
-          <li><a class="anim" href="/">Home</a></li>
-          <li><a class="anim" href="/contact">Contact us</a></li>
-          <li><a class="anim" href="/adminLogin">Admin Login</a></li>
-          <li><a class="anim" href="/register">Sign-Up</a></li>
-        </ul>
-      </nav>
-    </header>
+    <%- include('Header'); -%>
     <div class="succ-main-cont">
-      <h2>Success</h2>
-      <p>
-        <strong>Note</strong> : Transaction ID is to be produced while returning
-        the Book.
-      </p>
-      <div class="info">
-        <h2>Transaction ID</h2>
-        <h3><%= data.transaction_id%></h3>
-        <br />
-        <h2>User ID</h2>
-        <h3><%= data.user_id%></h3>
-        <br />
-        <h2>Book ID</h2>
-        <h3><%= data.book_id%></h3>
-        <br />
-        <h2>Due Date</h2>
-        <h3><%= data.due_date%></h3>
-        <br />
+      <div class="t-cont">
+        <h1>Success</h1>
+        <p>
+          <strong>Note</strong> : Transaction ID is to be produced while
+          returning the Book.
+        </p>
       </div>
-      <div class="image-cont">
-        <img src="/assets/images/books/<%=data.book_id%>.jpg" alt="" />
+      <div class="container">
+        <div class="info">
+          <h2>Transaction ID</h2>
+          <h3><%= data.transaction_id%></h3>
+          <br />
+          <h2>User ID</h2>
+          <h3><%= data.user_id%></h3>
+          <br />
+          <h2>Book ID</h2>
+          <h3><%= data.book_id%></h3>
+          <br />
+          <h2>Due Date</h2>
+          <h3><%= data.due_date%></h3>
+          <br />
+        </div>
+        <div class="image-cont">
+          <img src="/assets/images/books/<%=data.book_id%>.jpg" alt="" />
+        </div>
       </div>
     </div>
   </body>

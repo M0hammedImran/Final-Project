@@ -6,14 +6,15 @@
 .form-container {
   width: 100%;
   height: 92vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
 }
 
-.main {
-  width: 750px;
-  height: 85vh;
+.form-container .main {
+  width: 800px;
+  height: 80vh;
+  margin: 0 auto;
   background-color: rgb(255, 255, 255);
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
@@ -90,6 +91,8 @@
 
 .note {
   text-align: center;
+  height: 4em;
+  width: 100%;
 }
 
 /* Chrome, Edge, Safari*/

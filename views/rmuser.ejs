@@ -1,36 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../assets/style.css" />
-    <link rel="stylesheet" href="../assets/admin.css" />
-    <link
-      rel="shortcut icon"
-      href="../assets/images/favicon.ico"
-      type="image/x-icon"
-    />
-    <script
-      src="https://kit.fontawesome.com/31957ff6ff.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>LibSol</title>
+    <%- include('Head'); -%>
   </head>
   <body>
-    <header>
-      <div class="logo">
-        <a href="/">LibSol</a>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <a class="anim" href="/request"><i class="fas fa-search"></i></a>
-          </li>
-          <li><a class="anim" href="/">Home</a></li>
-          <li><a class="anim" href="/contact">Contact us</a></li>
-          <li><a class="anim" href="/adminLogin">Admin Login</a></li>
-          <li><a class="anim" href="/register">Sign-Up</a></li>
-        </ul>
-      </nav>
-    </header>
+    <%- include('Header'); -%>
     <div class="rm-main">
       <form action="/dashboard/removeuser" method="POST">
         <input

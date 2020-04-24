@@ -1,48 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../assets/style.css" />
-    <link rel="stylesheet" href="../assets/admin.css" />
-    <link
-      rel="shortcut icon"
-      href="../assets/images/favicon.ico"
-      type="image/x-icon"
-    />
-    <script
-      src="https://kit.fontawesome.com/31957ff6ff.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>LibSol</title>
+    <%- include('Head'); -%>
   </head>
   <body>
-    <header>
-      <div class="logo">
-        <a href="/">LibSol</a>
+    <%- include('Header'); -%>
+    <div class="main-contt">
+      <div class="rm-main">
+        <form action="/dashboard/removebook" method="POST">
+          <input
+            type="text"
+            name="book_id"
+            id="book_id"
+            placeholder="Book ID"
+            required
+          />
+          <div class="btn-cont">
+            <button type="submit">Confirm</button>
+            <button onclick="window.location.href='/dashboard'">Cancel</button>
+          </div>
+        </form>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <a class="anim" href="/request"><i class="fas fa-search"></i></a>
-          </li>
-          <li><a class="anim" href="/">Home</a></li>
-          <li><a class="anim" href="/contact">Contact us</a></li>
-          <li><a class="anim" href="/adminLogin">Admin Login</a></li>
-          <li><a class="anim" href="/register">Sign-Up</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div class="rm-main">
-      <form action="/dashboard/removebook" method="POST">
-        <input
-          type="text"
-          name="book_id"
-          id="book_id"
-          placeholder="Book ID"
-          required
-        />
-        <button type="submit">Confirm</button>
-        <button onclick="window.location.href='/dashboard'">Cancel</button>
-      </form>
     </div>
   </body>
 </html>
