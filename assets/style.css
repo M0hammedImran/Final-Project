@@ -10,12 +10,12 @@
 }
 
 *::-moz-selection {
-  color: #272727;
+  color: #1b1b1b;
   background-color: #fff;
 }
 
 *::selection {
-  color: #272727;
+  color: #1b1b1b;
   background-color: #fff;
 }
 
@@ -576,6 +576,21 @@ button {
   width: fit-content;
   height: 2em;
   font-size: 1.2em;
+}
+
+.cont::-moz-selection {
+  background-color: black;
+  color: white;
+}
+
+.cont::selection {
+  background-color: black;
+  color: white;
+}
+
+.cont::-moz-selection {
+  background-color: black;
+  color: white;
 }
 
 .btn-container-1 {

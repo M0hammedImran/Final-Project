@@ -7,15 +7,18 @@
   scrollbar-color: #08aeea #2af598;
   scrollbar-width: thin;
 }
+
 *::selection {
-  color: rgb(39, 39, 39);
+  color: rgb(27, 27, 27);
   background-color: #fff;
 }
+
 body {
   background-color: #08aeea;
   background-image: linear-gradient(225deg, #08aeea 0%, #2af598 84%);
   height: 100vh;
 }
+
 header {
   min-height: 8vh;
   max-height: max-content;
@@ -30,6 +33,7 @@ header {
     align-items: center;
   }
 }
+
 .logo a {
   color: black;
   text-decoration: none;
@@ -40,6 +44,7 @@ header {
   color: #fff;
   background-color: rgb(39, 39, 39);
 }
+
 nav {
   display: flex;
   justify-content: flex-end;
@@ -59,12 +64,14 @@ nav {
     align-items: center;
   }
 }
+
 nav {
   a::selection {
     color: #fff;
     background-color: rgb(39, 39, 39);
   }
 }
+
 .main-container {
   height: 92vh;
   display: grid;
@@ -90,6 +97,7 @@ nav {
     color: white;
   }
 }
+
 .btn-container {
   grid-column: 2 / span 1;
   grid-row: 4 / span 1;
@@ -107,6 +115,7 @@ nav {
     cursor: pointer;
   }
 }
+
 .btn-container,
 .text-container,
 .img-container {
@@ -354,6 +363,7 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 1em;
+
   table tr {
     th {
       font-size: 1.3em;
@@ -367,6 +377,14 @@ button {
       height: 2em;
       font-size: 1.2em;
     }
+  }
+  &::selection {
+    background-color: black;
+    color: white;
+  }
+  &::-moz-selection {
+    background-color: black;
+    color: white;
   }
 }
 
