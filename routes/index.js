@@ -156,9 +156,7 @@ router.get('/user/info', (req, res) => {
       if (!err) {
         let d = rows[0].DOB + '';
         let a = d.split(' ');
-        let y = a[3];
-        let m = a[1];
-        let da = a[2];
+        let [, m, da, y] = a;
         let formattedDate = `${da}-${m}-${y}`;
 
         const {
@@ -199,11 +197,8 @@ router.get('/user/info', (req, res) => {
 router.get('/viewall', (req, res) => {
   mysqlConnection.query(`SELECT * FROM libsol_db.books_table`, (err, rows) => {
     let books;
-    if (!err) {
-      books = rows;
-    } else {
-      console.log(err);
-    }
+    if (!err) books = rows;
+    else console.log(err);
     res.render('viewall', { books: books });
   });
 });
@@ -297,12 +292,6 @@ router.post('/request/auth', (req, res) => {
       }
     }
   );
-  // }else{
-  //   errorMessage=''
-  // }
-  // }
-  // }
-  // );
 });
 
 router.post('/request/last', (req, res) => {
