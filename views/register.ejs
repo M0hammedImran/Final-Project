@@ -60,7 +60,23 @@
               <label for="other">Other</label>
             </div>
             <div class="date-con">
-              <input type="date" required class="input" id="date" name="DOB" />
+              <!-- <input
+                placeholder="Date"
+                class="input"
+                type="text"
+                onfocus="(this.type='date')"
+                onblur="(this.type='text')"
+                id="date"
+              /> -->
+              <input
+                type="date"
+                onload=""
+                required
+                class="input"
+                id="date"
+                name="DOB"
+                min="1985-01-01"
+              />
             </div>
           </div>
           <div class="address">
@@ -114,5 +130,8 @@
         </div>
       </form>
     </div>
+    <script>
+      document.querySelector('#date').valueAsDate = new Date();
+    </script>
   </body>
 </html>

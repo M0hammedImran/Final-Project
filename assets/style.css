@@ -19,6 +19,28 @@
   background-color: #fff;
 }
 
+*::-moz-focus-outer {
+  border: 0;
+}
+
+*::-moz-focus-inner {
+  border: 0;
+}
+
+a:focus {
+  outline: none;
+}
+
+a::-moz-focus-inner {
+  border: 0;
+}
+
+input:-moz-submit-invalid,
+input:invalid,
+input:-moz-ui-invalid {
+  box-shadow: none;
+}
+
 body {
   background-color: #08aeea;
   background-image: linear-gradient(225deg, #08aeea 0%, #2af598 84%);
@@ -26,16 +48,13 @@ body {
 }
 
 header {
-  min-height: 8vh;
-  max-height: -webkit-max-content;
-  max-height: -moz-max-content;
-  max-height: max-content;
+  min-height: 70px;
   width: 100%;
   display: -ms-grid;
   display: grid;
   background-color: #fafafa;
-  -ms-grid-columns: 1fr 2fr 10fr 1fr;
-      grid-template-columns: 1fr 2fr 10fr 1fr;
+  -ms-grid-columns: 1fr 2fr 1fr 10fr 0.5fr;
+      grid-template-columns: 1fr 2fr 1fr 10fr 0.5fr;
 }
 
 header .logo {
@@ -69,12 +88,15 @@ header .logo {
 }
 
 nav {
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4 / span 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -88,16 +110,15 @@ nav a {
 
 nav ul li {
   list-style-type: none;
-  padding-left: 5em;
 }
 
 nav ul {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -234,86 +255,67 @@ button {
   cursor: pointer;
 }
 
-.search-container {
-  width: 100%;
-  height: 92vh;
+.search-container,
+.search-form,
+.search-bar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
 }
 
-.search-bar {
-  margin-bottom: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.search-container {
+  height: 92vh;
+  width: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.search-btn-container {
-  width: 100%;
-  height: 3rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.search-container .search-form {
+  min-height: 10rem;
+  width: 70%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.form-cont {
+.search-container .search-form .search-bar {
+  min-height: 5rem;
   width: 100%;
-  height: 20vh;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.search {
-  width: 40rem;
+.search-container .search-form .search-bar .search {
+  width: 100%;
   height: 3rem;
-  padding: 0 0 0 1rem;
-  font-size: 1.1rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
   border: none;
-  outline: none;
-  border-bottom: 2px solid #08aeea;
-  border-radius: 0.2em;
+  border-bottom: 2px solid #000000;
 }
 
-.search-btn {
-  background-color: #10799f;
+.search-container .search-form .search-bar .search:focus {
+  border-bottom: 2px solid #1e1e1e;
+  border-left: 2px solid #1e1e1e;
 }
 
-.instructions {
-  width: 60em;
-  height: 20vh;
+.search-container .view-all {
+  height: 3rem;
+  width: 10rem;
+  border-radius: 10rem;
+  background-color: #0689b9;
+  color: white;
   font-size: 16px;
-  padding: 1rem;
-}
-
-.instructions p {
-  color: #232323;
-}
-
-.instructions .pp {
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
 }
 
 .note {
@@ -1014,10 +1016,4 @@ button {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #21c87d;
-}
-
-@media only screen and (max-width: 800px) {
-  body {
-    background-color: #fff;
-  }
 }

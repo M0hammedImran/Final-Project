@@ -6,40 +6,26 @@
   <body>
     <%- include('Header'); -%>
     <div class="search-container">
-      <form action="/request/search" method="GET">
-        <div class="form-cont">
-          <div class="search-bar">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              placeholder="Search for Books"
-              class="search"
-              autofocus
-            />
-          </div>
-          <div class="search-btn-container">
-            <button class="search-btn" type="submit">Submit</button>
-          </div>
+      <form class="search-form" action="/request/search" method="GET">
+        <div class="search-bar">
+          <label for="search">Search for Books with Exact Title</label>
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search for Books"
+            class="search"
+            autofocus
+            required
+          />
         </div>
+        <!-- <div class="search-btn-container"> -->
+        <button class="search-btn" type="submit">Search</button>
+        <!-- </div> -->
       </form>
-      <div class="instructions">
-        <h2>Note:</h2>
-        <p>
-          If You have been redirected to this page then the server has
-          encountered an error. <b>Try Again</b> after some time!
-        </p>
-        <br />
-        <p class="pp">If Not, then please continue.</p>
-      </div>
-      <form class="note" action="/viewall" method="GET">
-        <p>If you want to view all the books, Press the below Button.</p>
-        <div class="view-btn">
-          <button>
-            View All Books
-          </button>
-        </div>
-      </form>
+      <button class="view-all" onclick="window.location.href='viewall'">
+        View All Books
+      </button>
     </div>
   </body>
 </html>
