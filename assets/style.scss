@@ -37,12 +37,11 @@ input:-moz-ui-invalid {
 body {
   background-color: #08aeea;
   background-image: linear-gradient(225deg, #08aeea 0%, #2af598 84%);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 header {
   min-height: 70px;
-  // max-height: max-content;
   width: 100%;
   display: grid;
   background-color: rgb(250, 250, 250);
@@ -71,6 +70,8 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 70%;
+  margin-left: auto;
   a {
     color: rgb(54, 54, 54);
     font-weight: bold;
@@ -158,7 +159,6 @@ nav {
   height: 2px;
   width: 100%;
   background: currentColor;
-
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.1s ease-in-out;
@@ -186,16 +186,28 @@ button {
   display: flex;
   flex-direction: column;
 }
+body {
+  height: 100vh;
+}
 .search-container {
-  height: 92vh;
+  margin-top: 1rem;
+  height: 500px;
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  label {
+    font-size: 1.2rem;
+  }
   .search-form {
     min-height: 10rem;
-    width: 70%;
+    width: 650px;
     justify-content: space-between;
     align-items: center;
+    button {
+      width: 200px;
+      height: 2.8rem;
+      font-size: 1.2rem;
+    }
     .search-bar {
       min-height: 5rem;
       width: 100%;
@@ -203,10 +215,11 @@ button {
       .search {
         width: 100%;
         height: 3rem;
-        padding: 0.5rem;
+        padding: 0.8rem;
         border-radius: 0.3rem;
         border: none;
         border-bottom: 2px solid #000000;
+        font-size: 1rem;
         &:focus {
           border-bottom: 2px solid #1e1e1e;
           border-left: 2px solid #1e1e1e;
@@ -219,9 +232,25 @@ button {
     height: 3rem;
     width: 10rem;
     border-radius: 10rem;
-    background-color: darken(#08aeea, 10);
+    background-color: darken(#08eaa6, 20);
     color: white;
     font-size: 16px;
+  }
+  .view-all__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40%;
+    h3 {
+      background-color: #fff;
+      user-select: none;
+      width: 450px;
+      padding: 1rem;
+      border-radius: 0.4rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
   }
 }
 
@@ -273,9 +302,10 @@ button {
 .err-mes-img img {
   width: 20rem;
 }
+
 .main-cont {
   padding: 1rem;
-  height: 91vh;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -302,10 +332,12 @@ button {
   .contt {
     width: 100%;
     display: flex;
+    height: 50%;
     justify-content: space-evenly;
     align-items: center;
   }
 }
+
 .rq-btn {
   height: 70px;
   width: 200px;

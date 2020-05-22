@@ -29,7 +29,10 @@
           <br />
         </div>
         <div class="image-cont">
-          <img src="/assets/images/books/<%=book.book_id%>.jpg" alt="" />
+          <img
+            src="/assets/images/books/<%=book.cover_name%>"
+            alt="Book Cover Image"
+          />
         </div>
       </div>
       <div class="rq-btn">
@@ -60,5 +63,8 @@
       </div>
       <% } %>
     </div>
+    <script>
+      console.log('<%= book %>'.toString());
+    </script>
   </body>
 </html>

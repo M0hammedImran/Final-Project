@@ -12,7 +12,7 @@
 
     <div class="form-container">
       <form action="/register" id="myForm" method="POST">
-        <h3 class="note">Note: ( * ) Indicates Compulsary Fields</h3>
+        <h3 class="note">Note: ( * ) Indicates Compulsory Fields</h3>
         <div class="main">
           <div class="name-container">
             <input
@@ -60,22 +60,15 @@
               <label for="other">Other</label>
             </div>
             <div class="date-con">
-              <!-- <input
-                placeholder="Date"
-                class="input"
+              <input
+                required
                 type="text"
                 onfocus="(this.type='date')"
                 onblur="(this.type='text')"
                 id="date"
-              /> -->
-              <input
-                type="date"
-                onload=""
-                required
-                class="input"
-                id="date"
                 name="DOB"
-                min="1985-01-01"
+                class="input"
+                placeholder="Date"
               />
             </div>
           </div>

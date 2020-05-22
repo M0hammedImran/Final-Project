@@ -44,7 +44,7 @@ input:-moz-ui-invalid {
 body {
   background-color: #08aeea;
   background-image: linear-gradient(225deg, #08aeea 0%, #2af598 84%);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 header {
@@ -100,6 +100,8 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 70%;
+  margin-left: auto;
 }
 
 nav a {
@@ -267,8 +269,13 @@ button {
           flex-direction: column;
 }
 
+body {
+  height: 100vh;
+}
+
 .search-container {
-  height: 92vh;
+  margin-top: 1rem;
+  height: 500px;
   width: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -277,15 +284,25 @@ button {
           align-items: center;
 }
 
+.search-container label {
+  font-size: 1.2rem;
+}
+
 .search-container .search-form {
   min-height: 10rem;
-  width: 70%;
+  width: 650px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.search-container .search-form button {
+  width: 200px;
+  height: 2.8rem;
+  font-size: 1.2rem;
 }
 
 .search-container .search-form .search-bar {
@@ -298,10 +315,11 @@ button {
 .search-container .search-form .search-bar .search {
   width: 100%;
   height: 3rem;
-  padding: 0.5rem;
+  padding: 0.8rem;
   border-radius: 0.3rem;
   border: none;
   border-bottom: 2px solid #000000;
+  font-size: 1rem;
 }
 
 .search-container .search-form .search-bar .search:focus {
@@ -313,9 +331,38 @@ button {
   height: 3rem;
   width: 10rem;
   border-radius: 10rem;
-  background-color: #0689b9;
+  background-color: #058760;
   color: white;
   font-size: 16px;
+}
+
+.search-container .view-all__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 40%;
+}
+
+.search-container .view-all__container h3 {
+  background-color: #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 450px;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  margin-top: 3rem;
+  text-align: center;
 }
 
 .note {
@@ -398,7 +445,7 @@ button {
 
 .main-cont {
   padding: 1rem;
-  height: 91vh;
+  height: 100%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -438,6 +485,7 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 50%;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;

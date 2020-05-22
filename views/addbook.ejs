@@ -6,7 +6,11 @@
   <body>
     <%- include('Header'); -%>
     <div class="form-container addbook">
-      <form action="/dashboard/addbook" method="POST">
+      <form
+        action="/dashboard/addbook"
+        enctype="multipart/form-data"
+        method="POST"
+      >
         <div class="book main">
           <div class="id-name">
             <input

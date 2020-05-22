@@ -3,9 +3,12 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const mysqlConnection = require('../connection');
-
+const multer = require('multer');
+const path = require('path');
+// const fs = require('fs');
 let validId;
 
+let updatedFileName = '';
 let row = [];
 let userinfo = [];
 let emess = '';
@@ -14,6 +17,19 @@ let umess = [];
 let booksvalue = [];
 let message;
 
+const storage = multer.diskStorage({
+  destination: 'assets/images/books',
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+    );
+    updatedFileName =
+      file.fieldname + '-' + Date.now() + path.extname(file.originalname);
+    console.log(updatedFileName);
+  },
+});
+const upload = multer({ storage: storage });
 //loading admin values
 let sqlAdmin = [];
 
@@ -360,6 +376,56 @@ router.post('/request/last', (req, res) => {
       } else console.log(err);
     }
   );
+});
+
+router.post('/dashboard/addbook', upload.single('cover'), (req, res) => {
+  // console.log(req.body);
+  // console.log(req.file);
+  // console.log(updatedFileName);
+  const {
+    book_id,
+    book_name,
+    author,
+    publisher,
+    published_year,
+    origin_country,
+    pages,
+    copies,
+  } = req.body;
+
+  if (!req.file) {
+    console.log('No file received');
+    return res.redirect('/dashboard/addbook');
+  } else {
+    console.log('file received');
+    const completeBookDetails = {
+      book_id,
+      book_name,
+      author,
+      publisher,
+      published_year,
+      origin_country,
+      pages,
+      copies,
+      cover_name: updatedFileName,
+    };
+
+    mysqlConnection.query(
+      'INSERT INTO libsol_db.books_table SET ?',
+      completeBookDetails,
+      (err, rows) => {
+        if (!err) {
+          umess = [];
+          umess = 'Added a new book';
+          return res.redirect('/dashboard');
+        } else {
+          umess = [];
+          umess = 'Error adding a new book';
+          res.redirect('/dashboard/addbook');
+        }
+      }
+    );
+  }
 });
 
 router.post('/dashboard/updatebook', (req, res) => {

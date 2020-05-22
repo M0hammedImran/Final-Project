@@ -1,14 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .form-container {
   width: 100%;
   height: 92vh;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
 }
 
 .form-container .main {
@@ -24,19 +16,15 @@
     grid-row: 2 / span 1;
   }
   .gender_date {
-    // grid-column: 2 / span 1;
     grid-row: 4 / span 1;
   }
   .address {
-    // grid-column: 2 / span 1;
     grid-row: 6 / span 1;
   }
   .email {
-    // grid-column: 2 / span 1;
     grid-row: 8 / span 1;
   }
   .btn {
-    // grid-column: 2 / span 1;
     grid-row: 10 / span 1;
   }
 }

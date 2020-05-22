@@ -84,18 +84,3 @@ ol {
   padding: 0;
   counter-reset: item;
 }
-
-// ol > li:before {
-//   display: inline-block;
-//   width: 1em;
-//   padding-right: 0.5em;
-//   font-weight: bold;
-//   text-align: right;
-//   content: '0' counter(item) '.';
-// }
-// ol li {
-//   font-weight: bold;
-// }
-// li > * {
-//   font-weight: normal;
-// }

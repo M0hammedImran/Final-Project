@@ -114,6 +114,7 @@ app.post('/logout', (req, res) => {
 });
 app.post('/request/book', router);
 app.post('/request/last', router);
+app.post('/dashboard/addbook', router);
 app.post('/dashboard/updatebook', router);
 app.post('/dashboard/removebook', router);
 app.post('/dashboard/removeuser', router);
