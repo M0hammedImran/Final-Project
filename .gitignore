@@ -1,9 +1,6 @@
 /node_modules
 /files
 .env
-files/users.json
-files/admin.json
-assets/images/books
-sendgrid.env
+/assets
 *.swp
 assets/images

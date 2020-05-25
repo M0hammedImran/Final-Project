@@ -379,9 +379,6 @@ router.post('/request/last', (req, res) => {
 });
 
 router.post('/dashboard/addbook', upload.single('cover'), (req, res) => {
-  // console.log(req.body);
-  // console.log(req.file);
-  // console.log(updatedFileName);
   const {
     book_id,
     book_name,
@@ -564,7 +561,6 @@ function viewall() {
   mysqlConnection.query(`SELECT * FROM libsol_db.books_table`, (err, rows) => {
     if (!err) {
       if (rows.toString().length !== 0) {
-        // console.log(rows);
         booksvalue = [];
         booksvalue.push(rows[0]);
       }
