@@ -32,10 +32,11 @@
       </div>
       <form action="/request/last" method="POST">
         <div style="display: none;">
-          <input type="text" name="user_id" value="<%= user.user_id%>" />
-          <input type="text" name="book_id" value="<%= book.book_id%>" />
-          <input type="text" name="boDate" value="<%= boDate%>" />
-          <input type="text" name="reDate" value="<%= reDate%>" />
+          <input type="text" name="user_id" value="<%= user.user_id %>" />
+          <input type="text" name="book_id" value="<%= book.book_id %>" />
+          <input type="text" name="boDate" value="<%= boDate %>" />
+          <input type="text" name="reDate" value="<%= reDate %>" />
+          <input type="text" name="email" value="<%= user.email %>" />
         </div>
         <div class="rq-btn"><button type="submit">Confirm</button></div>
       </form>

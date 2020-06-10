@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { createTransport } = require('nodemailer');
 
-function SendMail(RecipientEmail = '', messageBody = 'Welcome to LibSol.') {
+function SendMail(RecipientEmail, messageBody, subject = 'Welcome Email.') {
   let transporter = createTransport({
     host: 'smtp.googlemail.com', // Gmail Host
     port: 465, // Port
@@ -19,7 +19,7 @@ function SendMail(RecipientEmail = '', messageBody = 'Welcome to LibSol.') {
     from: fromMessage,
     to: RecipientEmail,
     // Recipient email address. Multiple emails can send separated by commas
-    subject: 'Welcome Email',
+    subject: subject,
     html: messageBody,
   };
 

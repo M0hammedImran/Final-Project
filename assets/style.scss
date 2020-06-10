@@ -9,8 +9,8 @@
 }
 
 *::selection {
-  color: rgb(27, 27, 27);
-  background-color: #fff;
+  background-color: #1b1b1b;
+  color: #ffffff;
 }
 
 // Universal Styles for Overriding Mozilla Default CSS
@@ -62,8 +62,8 @@ header {
   font-weight: bold;
 }
 .logo a::selection {
-  color: #fff;
   background-color: rgb(39, 39, 39);
+  color: #fff;
 }
 
 nav {
@@ -91,8 +91,8 @@ nav {
 
 nav {
   a::selection {
-    color: #fff;
     background-color: rgb(39, 39, 39);
+    color: #fff;
   }
 }
 

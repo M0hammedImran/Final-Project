@@ -131,7 +131,6 @@ router.get('/request/search', (req, res) => {
       );
       console.log(found_book);
       if (found_book !== undefined) {
-        console.log('Found');
         message = '';
         res.render('searchresult', {
           book: found_book,
@@ -139,7 +138,7 @@ router.get('/request/search', (req, res) => {
         });
       } else {
         message = 'No such book is available';
-        res.render('searchresult', { message: message });
+        res.render('searchresult', { book: '', message: message });
       }
     }
   });
@@ -318,7 +317,7 @@ router.post('/request/auth', (req, res) => {
 
 router.post('/request/last', (req, res) => {
   const trans_msg = `${userinfo[0].firstName} ${userinfo[0].lastName} borrowed ${row[0].book_name} on ${today} and have to return it by ${tomorrow}`;
-  const { user_id, book_id, boDate, reDate } = req.body;
+  const { user_id, book_id, boDate, reDate, email } = req.body;
 
   let trans = {
     transaction_id: keyGenSmall(),
@@ -328,8 +327,6 @@ router.post('/request/last', (req, res) => {
     due_date: reDate,
     transaction_message: trans_msg,
   };
-
-  console.log(trans);
 
   mysqlConnection.query(
     `SELECT * FROM libsol_db.transaction_table WHERE user_id='${user_id}'`,
@@ -360,8 +357,16 @@ router.post('/request/last', (req, res) => {
                         `SELECT * FROM libsol_db.transaction_table WHERE user_id=${req.body.user_id}`,
                         (err, rows) => {
                           if (!err) {
+                            SendMail(
+                              'mohammedimran86992@gmail.com',
+                              `<div>
+                              <p>You have borrowed <strong>${row[0].book_name}</strong> on <strong>${today}</strong> and have to return it by <strong>${tomorrow}</strong>.</p>
+                            </div>`,
+                              'Invoice'
+                            );
                             tran_table = '';
                             tran_table = rows[0];
+                            console.log(trans);
                             res.redirect('/request/success');
                           }
                         }
