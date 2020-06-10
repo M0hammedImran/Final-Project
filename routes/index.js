@@ -1,10 +1,13 @@
 // eslint-env es6
+require('dotenv').config();
+
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const mysqlConnection = require('../connection');
 const multer = require('multer');
 const path = require('path');
+const SendMail = require('../smtp/index');
 // const fs = require('fs');
 let validId;
 
@@ -260,7 +263,10 @@ router.post('/register', (req, res) => {
           user,
           (err, rows) => {
             if (!err) {
+              let messageBody = `<div style="font-size:16px;"><You>Welcome, <br/> Your new HASH KEY is <strong>${user.user_id}</strong>. You can use this to request/return Books.</p> </div>`;
+              SendMail(user.email, messageBody);
               console.log('Success!');
+
               res.redirect('/user');
             } else {
               console.log(err);
