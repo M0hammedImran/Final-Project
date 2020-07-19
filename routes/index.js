@@ -23,12 +23,12 @@ let message;
 const storage = multer.diskStorage({
   destination: 'assets/images/books',
   filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
-    );
     updatedFileName =
       file.fieldname + '-' + Date.now() + path.extname(file.originalname);
+    cb(
+      null,
+      updatedFileName
+    );
     console.log(updatedFileName);
   },
 });
@@ -429,12 +429,14 @@ router.post('/dashboard/addbook', upload.single('cover'), (req, res) => {
         } else {
           umess = [];
           umess = 'Error adding a new book';
+          console.log(err)
           res.redirect('/dashboard/addbook');
         }
       }
     );
   }
 });
+
 
 router.post('/dashboard/updatebook', (req, res) => {
   const { transaction_id, book_id } = req.body;
