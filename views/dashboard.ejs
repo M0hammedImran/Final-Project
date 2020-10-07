@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('Head'); -%>
-  </head>
-  <body>
-    <%- include('Header'); -%>
-    <div class="admin-container">
-      <div class="head"><h1><%=rows.name%> Page</h1></div>
-      <div class="head"><h3>Phone No: <%= rows.phone %></h1></div>
-      <div class="book-crud-container">
-        <p>CRUD Operations on Books</p>
-        <div class="a-c">
-          <a href="/dashboard/addbook">Add Books</a>
-          <a href="/dashboard/updatebook">Update Books</a>
-          <a href="/dashboard/viewbook">View Books</a>
-          <a href="/dashboard/removebook">Remove Books</a>
-        </div>
-      </div>
-      <div class="user-crud-container">
-        <p>CRUD Operations on Users</p>
-        <div class="a-c">
-          <a href="/dashboard/adduser">Add User</a>
-          <a href="/dashboard/updateuser">Update User</a>
-          <a href="/dashboard/viewuser">View Users</a>
-          <a href="/dashboard/removeuser">Remove User</a>
-        </div>
-      </div>
 
-      <form class="logout" action="/logout" method="post">
-        <button type="submit">logout</button>
-      </form>
+<head>
+  <%- include('Head'); -%>
+</head>
 
-      <script type="text/javascript">
-        var messlen = '<%= umess.length %>';
-        console.log(messlen);
-        const showAlert = mes => alert('Message: ' + mes);
-        if (messlen != 0) {
-          showAlert('<%=umess%>');
-        }
-      </script>
+<body>
+  <%- include('Header'); -%>
+  <div class="admin-container">
+    <div class="head">
+      <h1 id="h1"></h1>
     </div>
-  </body>
+    <div class="head">
+      <h3>Phone No: <%= rows.phone %></h1>
+    </div>
+    <div class="book-crud-container">
+      <p>CRUD Operations on Books</p>
+      <div class="a-c">
+        <a href="/dashboard/addbook">Add Books</a>
+        <a href="/dashboard/updatebook">Update Books</a>
+        <a href="/dashboard/viewbook">View Books</a>
+        <a href="/dashboard/removebook">Remove Books</a>
+      </div>
+    </div>
+    <div class="user-crud-container">
+      <p>CRUD Operations on Users</p>
+      <div class="a-c">
+        <a href="/dashboard/adduser">Add User</a>
+        <a href="/dashboard/updateuser">Update User</a>
+        <a href="/dashboard/viewuser">View Users</a>
+        <a href="/dashboard/removeuser">Remove User</a>
+      </div>
+    </div>
+
+    <form class="logout" action="/logout" method="post">
+      <button type="submit">logout</button>
+    </form>
+
+    <script type="text/javascript">
+      let messlen = '<%= umess.length %>';
+      document.querySelector('#h1').innerText = '<%=rows.name %>'.toUpperCase() + ' Page';
+      const showAlert = mes => alert('Message: ' + mes);
+      if (messlen != 0) showAlert('<%=umess%>');</script>
+  </div>
+</body>
+
 </html>

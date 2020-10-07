@@ -23,7 +23,7 @@
 .grid-layout .main {
   width: 400px;
   height: 40vh;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
   grid-template-rows: 20px repeat(4, 2fr 1fr);
@@ -58,8 +58,8 @@
   border-bottom: 2px solid #08aeea;
   border-radius: 0.1em;
   font-size: 15px;
-  color: rgb(0, 0, 0);
 }
+
 .input:focus {
   border-bottom: 2px solid #2af598;
   outline: none;

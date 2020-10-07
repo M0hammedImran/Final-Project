@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('Head'); -%>
-  </head>
-  <body>
-    <%- include('Header'); -%>
-    <div class="main-cont">
-      <form action="/request/auth" method="POST">
-        <input
-          type="text"
-          placeholder="Hash Key"
-          required
-          autofocus
-          value="1234"
-          name="user_id"
-          id="user_id"
-        />
-        <div class="sub-btn"><button type="submit">Submit</button></div>
-      </form>
 
-      <div class="contt">
-        <div class="info">
-          <h2>Name</h2>
-          <h3><%= book.book_name%></h3>
-          <br />
-          <h2>Author</h2>
-          <h3><%= book.author%></h3>
-          <br />
-          <h2>Publisher</h2>
-          <h3><%= book.publisher%></h3>
-          <br />
-          <h2>Published Year</h2>
-          <h3><%= book.published_year%></h3>
-          <br />
-          <h2>Country</h2>
-          <h3><%= book.origin_country%></h3>
-          <br />
-          <h2>No. of Pages</h2>
-          <h3><%= book.pages%></h3>
-          <br />
-        </div>
-        <div class="image-contt">
-          <img
-            src="/assets/images/books/<%=book.book_id%>.jpg"
-            alt="Book Cover"
-          />
-        </div>
+<head>
+  <%- include('Head'); -%>
+</head>
+
+<body>
+  <%- include('Header'); -%>
+  <div class="main-cont">
+    <form action="/request/auth" method="POST">
+      <input type="text" placeholder="Hash Key" required autofocus value="1234" name="user_id" id="user_id" />
+      <div class="sub-btn"><button type="submit">Submit</button></div>
+    </form>
+
+    <div class="contt">
+      <div class="info">
+        <h2>Name</h2>
+        <h3><%= book.book_name%></h3>
+        <br />
+        <h2>Author</h2>
+        <h3><%= book.author%></h3>
+        <br />
+        <h2>Publisher</h2>
+        <h3><%= book.publisher%></h3>
+        <br />
+        <h2>Published Year</h2>
+        <h3><%= book.published_year%></h3>
+        <br />
+        <h2>Country</h2>
+        <h3><%= book.origin_country%></h3>
+        <br />
+        <h2>No. of Pages</h2>
+        <h3><%= book.pages%></h3>
+        <br />
+      </div>
+      <div class="image-contt">
+        <img src="/assets/images/books/<%=book.cover_name%>" alt="Book Cover" />
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

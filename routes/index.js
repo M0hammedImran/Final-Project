@@ -7,7 +7,7 @@ const passport = require('passport');
 const mysqlConnection = require('../connection');
 const multer = require('multer');
 const path = require('path');
-const SendMail = require('../smtp/index');
+// const SendMail = require('../smtp/index');
 // const fs = require('fs');
 let validId;
 
@@ -36,7 +36,8 @@ const upload = multer({ storage: storage });
 //loading admin values
 let sqlAdmin = [];
 
-mysqlConnection.query('SELECT * FROM libsol_db.admin_table', (err, rows) => {
+const adminTable = 'SELECT * FROM libsol_db.admin_table';
+mysqlConnection.query(adminTable, (err, rows) => {
   if (!err) {
     rows.forEach((row) => {
       sqlAdmin.push(row);
@@ -217,14 +218,14 @@ router.get('/viewall', (req, res) => {
     let books;
     if (!err) books = rows;
     else console.log(err);
-    res.render('viewall', { books: books });
+    res.render('viewbook', { books: books });
   });
 });
 router.get('/**', (req, res) => res.redirect('/'));
 
 // POST Requests
 router.post('/register', (req, res) => {
-  let {
+  const {
     firstName,
     lastName,
     gender,
@@ -235,7 +236,7 @@ router.post('/register', (req, res) => {
     phone,
   } = req.body;
 
-  let user = {
+  const user = {
     user_id: keyGen(),
     firstName,
     lastName,
@@ -262,8 +263,8 @@ router.post('/register', (req, res) => {
           user,
           (err, rows) => {
             if (!err) {
-              let messageBody = `<div style="font-size:16px;"><You>Welcome, <br/> Your new HASH KEY is <strong>${user.user_id}</strong>. You can use this to request/return Books.</p> </div>`;
-              SendMail(user.email, messageBody);
+              // let messageBody = `<div style="font-size:16px;"><You>Welcome, <br/> Your new HASH KEY is <strong>${user.user_id}</strong>. You can use this to request/return Books.</p> </div>`;
+              // SendMail(user.email, messageBody);
               console.log('Success!');
 
               res.redirect('/user');
@@ -317,7 +318,7 @@ router.post('/request/auth', (req, res) => {
 
 router.post('/request/last', (req, res) => {
   const trans_msg = `${userinfo[0].firstName} ${userinfo[0].lastName} borrowed ${row[0].book_name} on ${today} and have to return it by ${tomorrow}`;
-  const { user_id, book_id, boDate, reDate, email } = req.body;
+  const { user_id, book_id, boDate, reDate } = req.body;
 
   let trans = {
     transaction_id: keyGenSmall(),
@@ -357,13 +358,13 @@ router.post('/request/last', (req, res) => {
                         `SELECT * FROM libsol_db.transaction_table WHERE user_id=${req.body.user_id}`,
                         (err, rows) => {
                           if (!err) {
-                            SendMail(
-                              'mohammedimran86992@gmail.com',
-                              `<div>
-                              <p>You have borrowed <strong>${row[0].book_name}</strong> on <strong>${today}</strong> and have to return it by <strong>${tomorrow}</strong>.</p>
-                            </div>`,
-                              'Invoice'
-                            );
+                            // SendMail(
+                            //   'mohammedimran86992@gmail.com',
+                            //   `<div>
+                            //   <p>You have borrowed <strong>${row[0].book_name}</strong> on <strong>${today}</strong> and have to return it by <strong>${tomorrow}</strong>.</p>
+                            // </div>`,
+                            //   'Invoice'
+                            // );
                             tran_table = '';
                             tran_table = rows[0];
                             console.log(trans);
@@ -429,7 +430,7 @@ router.post('/dashboard/addbook', upload.single('cover'), (req, res) => {
         } else {
           umess = [];
           umess = 'Error adding a new book';
-          console.log(err)
+          console.log(err);
           res.redirect('/dashboard/addbook');
         }
       }

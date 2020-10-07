@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('Head'); -%>
-  </head>
-  <body>
-    <%- include('Header'); -%>
-    <div class="main-cont">
-      <div class="contt">
-        <div class="info">
-          <h3>User Name</h3>
-          <p><%= user.firstName%> <%=user.lastName%></p>
-          <br />
-          <h3>Book Name</h3>
-          <p><%= book.book_name%></p>
-          <br />
-          <h3>Author</h3>
-          <p><%= book.author%></p>
-          <br />
-          <h3>Borrowing Date</h3>
-          <p><%= boDate%></p>
-          <br />
-          <h3>Due Date</h3>
-          <p><%= reDate%></p>
-        </div>
-        <div class="image-cont">
-          <img
-            src="/assets/images/books/<%=book.book_id%>.jpg"
-            alt="Book Cover"
-          />
-        </div>
+
+<head>
+  <%- include('Head'); -%>
+</head>
+
+<body>
+  <%- include('Header'); -%>
+  <div class="main-cont">
+    <div class="contt">
+      <div class="info">
+        <h3>User Name</h3>
+        <p><%= user.firstName%> <%=user.lastName%></p>
+        <br />
+        <h3>Book Name</h3>
+        <p><%= book.book_name%></p>
+        <br />
+        <h3>Author</h3>
+        <p><%= book.author%></p>
+        <br />
+        <h3>Borrowing Date</h3>
+        <p><%= boDate%></p>
+        <br />
+        <h3>Due Date</h3>
+        <p><%= reDate%></p>
       </div>
-      <form action="/request/last" method="POST">
-        <div style="display: none;">
-          <input type="text" name="user_id" value="<%= user.user_id %>" />
-          <input type="text" name="book_id" value="<%= book.book_id %>" />
-          <input type="text" name="boDate" value="<%= boDate %>" />
-          <input type="text" name="reDate" value="<%= reDate %>" />
-          <input type="text" name="email" value="<%= user.email %>" />
-        </div>
-        <div class="rq-btn"><button type="submit">Confirm</button></div>
-      </form>
+      <div class="image-cont">
+        <img src="/assets/images/books/<%=book.cover_name%>" alt="Book Cover" />
+      </div>
     </div>
-  </body>
+    <form action="/request/last" method="POST">
+      <div style="display: none;">
+        <input type="text" name="user_id" value="<%= user.user_id %>" />
+        <input type="text" name="book_id" value="<%= book.book_id %>" />
+        <input type="text" name="boDate" value="<%= boDate %>" />
+        <input type="text" name="reDate" value="<%= reDate %>" />
+        <input type="text" name="email" value="<%= user.email %>" />
+      </div>
+      <div class="rq-btn"><button type="submit">Confirm</button></div>
+    </form>
+  </div>
+</body>
+
 </html>

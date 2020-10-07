@@ -22,7 +22,6 @@
               placeholder="First Name *"
               name="firstName"
               id="fname"
-              value="Mohammed"
             />
             <input
               type="text"
@@ -30,47 +29,20 @@
               placeholder="Last Name"
               name="lastName"
               id="lname"
-              value="Imran"
             />
           </div>
           <div class="gender_date">
             <div class="gen">
-              <input
-                type="radio"
-                required
-                name="gender"
-                value="male"
-                id="male"
-                checked
-              />
+              <input type="radio" required name="gender" id="male" checked />
               <label for="male">Male</label>
-              <input
-                type="radio"
-                required
-                name="gender"
-                value="female"
-                id="female"
-              />
+              <input type="radio" required name="gender" id="female" />
               <label for="female">Female</label>
-              <input
-                type="radio"
-                required
-                name="gender"
-                value="other"
-                id="other"
-              />
+              <input type="radio" required name="gender" id="other" />
               <label for="other">Other</label>
             </div>
             <div class="date-con">
-              <input
-                required
-                type="date"
-                id="date"
-                name="DOB"
-                class="input"
-                placeholder="Date"
-                value="07/05/1999"
-              />
+              <input required type="date" id="date" name="DOB" class="input"
+              placeholder="Date" /1999" />
               <!-- onfocus="(this.type='date')"
                 onblur="(this.type='text')" -->
             </div>
@@ -83,7 +55,6 @@
               name="address1"
               id="address1"
               placeholder="Address Line 1 *"
-              value="Uppalli"
             />
             <input
               type="text"
@@ -92,19 +63,11 @@
               name="address2"
               id="address2"
               placeholder="Address Line 2 *"
-              value="Chikmagalur"
             />
           </div>
           <div class="email">
-            <input
-              type="email"
-              required
-              class="input"
-              id="email"
-              name="email"
-              placeholder="Enter email *"
-              value="mohammedimran86992@gmail.com"
-            />
+            <input type="email" required class="input" id="email" name="email"
+            placeholder="Enter email *" .com" />
             <input
               type="tel"
               required
@@ -113,7 +76,6 @@
               pattern="[6-9]{1}\d{9}"
               name="phone"
               placeholder="Phone No. *"
-              value="9110412712"
             />
           </div>
           <div class="pass"></div>
@@ -130,8 +92,8 @@
         </div>
       </form>
     </div>
-    <script>
-      document.querySelector('#date').valueAsDate = new Date();
-    </script>
+    <!-- <script>
+      // document.querySelector('#date').();
+    </script> -->
   </body>
 </html>

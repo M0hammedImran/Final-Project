@@ -7,7 +7,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const router = require('./routes/index.js');
 const mysqlConnection = require('./connection.js');
-
+// const bcrypt = require('bcryptjs');
 const app = express();
 
 // Loading AdminTable
@@ -60,7 +60,7 @@ app.use(flash());
 
 // Global Variables
 app.use((req, res, next) => {
-  res.locals.seccess_msg = req.flash('success_msg');
+  res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   next();
@@ -129,15 +129,16 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Click on link: http://localhost:${PORT}/`));
 
-// bcrypt.genSalt(10, function(err, salt) {
+// bcrypt.genSalt(10, function (err, salt) {
 //   bcrypt.hash('12345678', salt, (err, hash) => {
 //     if (err) throw err;
-//      let pass = { password: hash };
-//     admin.push(pass);
-//      let data = JSON.stringify(admin, null, 2);
+//     let pass = { password: hash };
+//     console.log(pass)
+// admin.push(pass);
+//  let data = JSON.stringify(admin, null, 2);
 
-//      fs.writeFile('./files/admin.json', data, err => {
-//       if (err) throw err;
-//      });
+//  fs.writeFile('./files/admin.json', data, err => {
+//   if (err) throw err;
+//  });
 //   });
 // });
